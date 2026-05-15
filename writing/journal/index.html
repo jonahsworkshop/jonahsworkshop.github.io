@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>journal — jonah's workshop</title>
+  <meta name="description" content="poetic writing from a physical notebook.">
+  <style>
+    :root {
+      --bg: #ebe2c7;
+      --ink: #1f1812;
+      --ink-soft: #6e6149;
+      --accent: #7a3f1d;
+      --rule: #c9bba0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino", Georgia, serif;
+      font-size: 19px;
+      line-height: 1.75;
+      padding: 3rem 2rem 8rem;
+    }
+
+    main {
+      max-width: 34rem;
+      margin: 0 auto 0 max(2rem, 14vw);
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .back:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.4rem;
+      font-style: italic;
+    }
+
+    .intro {
+      color: var(--ink-soft);
+      font-style: italic;
+      margin: 0 0 5rem;
+      max-width: 28rem;
+      font-size: 1rem;
+    }
+
+    .entry {
+      margin-bottom: 4rem;
+    }
+
+    .entry h2 {
+      font-size: 1.45rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.3rem;
+      font-style: italic;
+    }
+
+    .entry .meta {
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      font-style: italic;
+      margin: 0 0 0.4rem;
+    }
+
+    .entry .scored-to {
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      margin: 0 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .entry .scored-to .label {
+      font-style: italic;
+    }
+
+    .entry .scored-to a,
+    .entry .scored-to .play {
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 0.15rem 0.6rem;
+      font-size: 0.85rem;
+      background: none;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .entry .scored-to a:hover,
+    .entry .scored-to .play:hover,
+    .entry .scored-to .play.playing {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .entry .body p {
+      margin: 0 0 1.3rem;
+    }
+
+    .entry .body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .divider {
+      text-align: center;
+      color: var(--rule);
+      margin: 5rem 0;
+      font-size: 0.9rem;
+      letter-spacing: 0.5em;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 2rem 1.5rem 4rem; font-size: 17px; }
+      main { margin-left: 0; }
+      h1 { font-size: 1.8rem; }
+      .entry { margin-bottom: 3rem; }
+      .divider { margin: 3.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="/writing/">← back to writing</a>
+
+    <h1>journal</h1>
+    <p class="intro">poetic writing from a physical notebook, typed up here. some entries have music — the song that was playing as they were written. play it, or don't.</p>
+
+    <article class="entry">
+      <h2>the town at 3am</h2>
+      <p class="meta">may 14, 2026</p>
+      <p class="scored-to">
+        <span class="label">written to:</span>
+        <a href="https://open.spotify.com/track/REPLACE_WITH_REAL_ID" target="_blank" rel="noopener">Pink Floyd — Echoes →</a>
+      </p>
+      <div class="body">
+        <p>placeholder for the body of a journal entry. this is the slowest room. the line-height is wider. words sit further apart. paragraphs breathe.</p>
+        <p>each entry can run as long as it needs to. the typography is built for being read slowly, ideally with the paired music playing.</p>
+        <p>the music isn't required. it's a recommendation. the writing should stand alone.</p>
+      </div>
+    </article>
+
+    <div class="divider">· · ·</div>
+
+    <article class="entry">
+      <h2>another entry</h2>
+      <p class="meta">may 8, 2026</p>
+      <p class="scored-to">
+        <span class="label">written to:</span>
+        <button class="play" data-src="/sounds/audio/sketch-01.mp3">▶ untitled sketch #1</button>
+      </p>
+      <div class="body">
+        <p>this entry uses one of your own tracks — self-hosted MP3 from /sounds/audio/. the play button uses the same single-track-at-a-time logic as the sounds page, but fades in softly so the music doesn't slam.</p>
+        <p>so per entry: either link out to spotify/youtube (for copyrighted music), or play a self-hosted file (for your own work or royalty-free pieces).</p>
+      </div>
+    </article>
+
+    <div class="divider">· · ·</div>
+  </main>
+
+  <script>
+    (function() {
+      let current = null;
+      const TARGET_VOLUME = 0.6;
+      const FADE_STEP = 0.04;
+
+      document.querySelectorAll('.play[data-src]').forEach(btn => {
+        const audio = new Audio();
+        audio.preload = 'none';
+        audio.src = btn.dataset.src;
+
+        const fadeIn = () => {
+          let v = 0;
+          audio.volume = 0;
+          const step = () => {
+            v += FADE_STEP;
+            if (v >= TARGET_VOLUME) { audio.volume = TARGET_VOLUME; return; }
+            audio.volume = v;
+            requestAnimationFrame(step);
+          };
+          step();
+        };
+
+        btn.addEventListener('click', () => {
+          if (!btn.dataset.original) btn.dataset.original = btn.textContent;
+
+          if (current && current.audio !== audio) {
+            current.audio.pause();
+            current.audio.currentTime = 0;
+            current.btn.textContent = current.btn.dataset.original;
+            current.btn.classList.remove('playing');
+          }
+
+          if (audio.paused) {
+            audio.currentTime = 0;
+            audio.play();
+            fadeIn();
+            btn.textContent = '◼ stop';
+            btn.classList.add('playing');
+            current = { audio, btn };
+          } else {
+            audio.pause();
+            audio.currentTime = 0;
+            btn.textContent = btn.dataset.original;
+            btn.classList.remove('playing');
+            current = null;
+          }
+        });
+
+        audio.addEventListener('ended', () => {
+          btn.textContent = btn.dataset.original;
+          btn.classList.remove('playing');
+          if (current && current.audio === audio) current = null;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
