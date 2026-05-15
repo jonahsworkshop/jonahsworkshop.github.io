@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>recommending · jonah's workshop</title>
+<style>
+  :root {
+    --bg: #f1ece1;
+    --ink: #2a2520;
+    --ink-soft: #6b6258;
+    --accent: #8b3a2a;
+    --rule: #d8d0c0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 40rem;
+    margin: 0 auto 0 max(2rem, 12vw);
+    padding: 3rem 1.5rem 6rem 0;
+  }
+  @media (max-width: 600px) {
+    main { margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 2.5rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+  .back:hover { color: var(--accent); }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 500;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.01em;
+  }
+  .intro {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 2.5rem;
+    font-size: 0.95rem;
+  }
+
+  /* .shelf — collapsible category */
+  .shelf { border-top: 1px solid var(--rule); }
+  .shelf:last-of-type { border-bottom: 1px solid var(--rule); }
+  .shelf summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 1.05rem;
+  }
+  .shelf summary::-webkit-details-marker { display: none; }
+  .shelf summary::after {
+    content: '+';
+    color: var(--ink-soft);
+    font-size: 1.2rem;
+  }
+  .shelf[open] summary::after { content: '–'; }
+  .shelf summary:hover { color: var(--accent); }
+  .shelf-body { padding: 0.25rem 0 1.5rem; }
+
+  /* .entry — matches sitewide pattern */
+  .entry { margin: 0 0 1.75rem; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 0.2rem;
+  }
+  .entry h3 a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .entry h3 a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .entry .meta {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.4rem;
+  }
+  .entry .excerpt {
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+  }
+  .entry .ext {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-style: italic;
+  }
+  .entry .ext:hover { text-decoration: underline; }
+
+  /* .doorway — cross-aesthetic link to subroom */
+  .doorway {
+    display: block;
+    margin: 3rem 0 0;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--rule);
+    background: rgba(216, 208, 192, 0.2);
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.15s ease;
+  }
+  .doorway:hover { background: rgba(216, 208, 192, 0.45); }
+  .doorway .label {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+  }
+  .doorway h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 0.25rem;
+    font-style: italic;
+  }
+  .doorway p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">← back to the workshop</a>
+
+  <h1>recommending</h1>
+  <p class="intro">a bookshelf of things i keep telling people about. open a shelf to browse.</p>
+
+  <details class="shelf">
+    <summary>books</summary>
+    <div class="shelf-body">
+      <article class="entry">
+        <h3><a href="#">title goes here</a></h3>
+        <p class="meta">author · 20xx · novel</p>
+        <p class="excerpt">a sentence about why this stuck with me.</p>
+        <a class="ext" href="#">find it →</a>
+      </article>
+      <!-- add more book entries here -->
+    </div>
+  </details>
+
+  <details class="shelf">
+    <summary>shows &amp; films</summary>
+    <div class="shelf-body">
+      <article class="entry">
+        <h3><a href="#">title goes here</a></h3>
+        <p class="meta">creator · 20xx · 1 season</p>
+        <p class="excerpt">what makes this worth your evening.</p>
+        <a class="ext" href="#">watch →</a>
+      </article>
+    </div>
+  </details>
+
+  <details class="shelf">
+    <summary>articles &amp; essays</summary>
+    <div class="shelf-body">
+      <article class="entry">
+        <h3><a href="#">title goes here</a></h3>
+        <p class="meta">author · publication · 20xx</p>
+        <p class="excerpt">the argument i keep returning to.</p>
+        <a class="ext" href="#">read →</a>
+      </article>
+    </div>
+  </details>
+
+  <details class="shelf">
+    <summary>art</summary>
+    <div class="shelf-body">
+      <article class="entry">
+        <h3><a href="#">work or artist</a></h3>
+        <p class="meta">artist · medium · 20xx</p>
+        <p class="excerpt">what it does to a room.</p>
+        <a class="ext" href="#">see →</a>
+      </article>
+    </div>
+  </details>
+
+  <details class="shelf">
+    <summary>youtube</summary>
+    <div class="shelf-body">
+      <article class="entry">
+        <h3><a href="#">video or channel</a></h3>
+        <p class="meta">channel · 20xx · 14 min</p>
+        <p class="excerpt">the one i send to friends.</p>
+        <a class="ext" href="#">watch →</a>
+      </article>
+    </div>
+  </details>
+
+  <a class="doorway" href="/recommending/dystopia/">
+    <div class="label">a darker shelf →</div>
+    <h2>dystopia</h2>
+    <p>books, films, and signal from the bad-future bin. different room. mind the static.</p>
+  </a>
+</main>
+</body>
+</html>
