@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOUNDS — jonah's workshop</title>
+  <meta name="description" content="music i'm making and music i'm playing.">
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --ink: #e8e8e8;
+      --ink-soft: #777;
+      --accent: #9eff5a;
+      --rule: #222;
+    }
+
+    * { box-sizing: border-box; }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Berkeley Mono", "JetBrains Mono", "IBM Plex Mono", "Fira Code", Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      padding: 2.5rem 2rem 6rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 44rem;
+      margin: 0 auto 0 max(2rem, 8vw);
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    .back:hover { color: var(--accent); }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin: 0 0 0.5rem;
+    }
+
+    .intro {
+      color: var(--ink-soft);
+      margin: 0 0 4rem;
+      max-width: 32rem;
+      font-size: 0.95rem;
+    }
+
+    h2 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 4rem 0 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    section > p:first-of-type {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      margin: 0 0 2rem;
+      max-width: 32rem;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0 1rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .entry .num {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      padding-top: 0.15rem;
+    }
+
+    .entry .body { min-width: 0; }
+
+    .entry h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.25rem;
+      text-transform: uppercase;
+    }
+
+    .entry .meta {
+      color: var(--ink-soft);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0 0 0.7rem;
+    }
+
+    .entry .meta span + span::before {
+      content: " · ";
+      margin: 0 0.2rem;
+    }
+
+    .entry .note {
+      margin: 0 0 0.9rem;
+      max-width: 32rem;
+      font-size: 0.9rem;
+    }
+
+    .play, .ext {
+      display: inline-block;
+      color: var(--accent);
+      background: none;
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.7rem;
+      font: inherit;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .play:hover, .ext:hover,
+    .play.playing {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 2rem 1.25rem 4rem; font-size: 14px; }
+      main { margin-left: 0; }
+      h1 { font-size: 2rem; }
+      .entry { grid-template-columns: 2rem 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="/">← WORKSHOP/</a>
+
+    <h1>Sounds</h1>
+    <p class="intro">music i'm making and music i'm playing. mostly slow, mostly looped, mostly after midnight.</p>
+
+    <section>
+      <h2>Making</h2>
+      <p>tracks, sketches, things in progress.</p>
+
+      <article class="entry">
+        <span class="num">01</span>
+        <div class="body">
+          <h3>untitled sketch #1</h3>
+          <p class="meta"><span>ambient</span><span>4:12</span><span>may 2026</span></p>
+          <p class="note">a loop i can't stop returning to. four chords, one delay, one tape stop at the end.</p>
+          <button class="play" data-src="/sounds/audio/sketch-01.mp3">[ play ]</button>
+        </div>
+      </article>
+
+      <article class="entry">
+        <span class="num">02</span>
+        <div class="body">
+          <h3>placeholder track #2</h3>
+          <p class="meta"><span>techno</span><span>6:38</span><span>apr 2026</span></p>
+          <p class="note">faster than what i usually make. trying to learn how to write something with momentum.</p>
+          <button class="play" data-src="/sounds/audio/sketch-02.mp3">[ play ]</button>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2>Listening</h2>
+      <p>what's on rotation. not a canon, just what's open right now.</p>
+
+      <article class="entry">
+        <span class="num">→</span>
+        <div class="body">
+          <h3>artist name — album title</h3>
+          <p class="meta"><span>ambient/drone</span><span>added may 2026</span></p>
+          <p class="note">a short note about why this is here. what it does to a room.</p>
+          <a class="ext" href="https://example.com">[ listen → ]</a>
+        </div>
+      </article>
+
+      <article class="entry">
+        <span class="num">→</span>
+        <div class="body">
+          <h3>another artist — another album</h3>
+          <p class="meta"><span>techno</span><span>added apr 2026</span></p>
+          <p class="note">found it through a friend. been replaying the third track all month.</p>
+          <a class="ext" href="https://example.com">[ listen → ]</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    (function() {
+      let current = null;
+
+      document.querySelectorAll('.play').forEach(btn => {
+        const audio = new Audio();
+        audio.preload = 'none';
+        audio.src = btn.dataset.src;
+
+        btn.addEventListener('click', () => {
+          if (current && current.audio !== audio) {
+            current.audio.pause();
+            current.audio.currentTime = 0;
+            current.btn.textContent = '[ play ]';
+            current.btn.classList.remove('playing');
+          }
+
+          if (audio.paused) {
+            audio.play();
+            btn.textContent = '[ stop ]';
+            btn.classList.add('playing');
+            current = { audio, btn };
+          } else {
+            audio.pause();
+            audio.currentTime = 0;
+            btn.textContent = '[ play ]';
+            btn.classList.remove('playing');
+            current = null;
+          }
+        });
+
+        audio.addEventListener('ended', () => {
+          btn.textContent = '[ play ]';
+          btn.classList.remove('playing');
+          if (current && current.audio === audio) current = null;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
