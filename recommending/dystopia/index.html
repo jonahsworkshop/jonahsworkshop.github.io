@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dystopia · jonah's workshop</title>
+<style>
+  :root {
+    --bg: #1a1612;
+    --ink: #c9b896;
+    --ink-soft: #7a6a52;
+    --accent: #ff9a3c;
+    --warn: #ff5630;
+    --rule: #3a322a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* mono utility — meta, ids, archival labels */
+  .mono {
+    font-family: "Berkeley Mono", "JetBrains Mono", "IBM Plex Mono", "Fira Code", Menlo, Consolas, monospace;
+    letter-spacing: 0.02em;
+  }
+
+  /* CRT scanlines */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.14) 0px,
+      rgba(0,0,0,0.14) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    z-index: 9998;
+    mix-blend-mode: multiply;
+  }
+  /* sodium-lit vignette */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%);
+    z-index: 9997;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body::before { opacity: 0.5; }
+  }
+
+  main {
+    max-width: 38rem;
+    margin: 0 auto 0 max(2rem, 12vw);
+    padding: 2.5rem 1.5rem 6rem 0;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 600px) {
+    main { margin: 0 auto; padding: 1.75rem 1.25rem 4rem; }
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+  .back:hover { color: var(--accent); }
+
+  .stamp {
+    border: 1px solid var(--rule);
+    padding: 0.4rem 0.7rem;
+    margin: 0 0 2.5rem;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .stamp .pulse { color: var(--accent); }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    text-shadow:
+      0 0 14px rgba(255, 154, 60, 0.35),
+      0 0 30px rgba(255, 154, 60, 0.12);
+  }
+
+  .intro {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 2.5rem;
+    font-size: 0.95rem;
+    border-left: 1px solid var(--rule);
+    padding-left: 1rem;
+  }
+  .intro .lit { color: var(--accent); font-style: normal; }
+
+  /* .entry — dystopia variant */
+  .entry {
+    margin: 0 0 2.25rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--rule);
+  }
+  .entry .rec-id {
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    margin: 0 0 0.2rem;
+    text-transform: uppercase;
+  }
+  .entry h3 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin: 0 0 0.25rem;
+  }
+  .entry h3 a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.15s, text-shadow 0.15s, border-color 0.15s;
+  }
+  .entry h3 a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    text-shadow: 0 0 10px rgba(255, 154, 60, 0.4);
+  }
+  .entry .meta {
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  .entry .excerpt {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    color: #b8a988;
+  }
+  .entry .ext {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .entry .ext:hover { text-shadow: 0 0 8px rgba(255, 154, 60, 0.5); }
+
+  .endmark {
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .endmark .accent { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/recommending/">← back to the bookshelf</a>
+
+  <div class="stamp mono">
+    <span>node :: /recommending/dystopia/</span>
+    <span class="pulse">● rec</span>
+    <span>amber light :: stable</span>
+  </div>
+
+  <h1>dystopia</h1>
+
+  <p class="intro">field reports from possible futures and a few present ones in disguise. <span class="lit">read in dim light.</span></p>
+
+  <article class="entry">
+    <p class="rec-id mono">rec.001 // book</p>
+    <h3><a href="#">title goes here</a></h3>
+    <p class="meta mono">author · 19xx · 250pp</p>
+    <p class="excerpt">a short, clipped sentence on why this still hurts.</p>
+    <a class="ext mono" href="#">retrieve →</a>
+  </article>
+
+  <article class="entry">
+    <p class="rec-id mono">rec.002 // film</p>
+    <h3><a href="#">title goes here</a></h3>
+    <p class="meta mono">director · 20xx · 109min</p>
+    <p class="excerpt">one image you won't shake.</p>
+    <a class="ext mono" href="#">retrieve →</a>
+  </article>
+
+  <article class="entry">
+    <p class="rec-id mono">rec.003 // series</p>
+    <h3><a href="#">title goes here</a></h3>
+    <p class="meta mono">showrunner · 20xx · s01</p>
+    <p class="excerpt">a workplace, but the work is the cage.</p>
+    <a class="ext mono" href="#">retrieve →</a>
+  </article>
+
+  <article class="entry">
+    <p class="rec-id mono">rec.004 // essay</p>
+    <h3><a href="#">title goes here</a></h3>
+    <p class="meta mono">author · publication · 20xx</p>
+    <p class="excerpt">the sentence that broke the spell.</p>
+    <a class="ext mono" href="#">retrieve →</a>
+  </article>
+
+  <!-- add more entries here. keep them clipped. -->
+
+  <div class="endmark mono"><span class="accent">◼</span> end of transmission <span class="accent">◼</span></div>
+</main>
+</body>
+</html>
