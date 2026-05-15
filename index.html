@@ -3,9 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>jonahs workshop</title>
+  <title>jonah's workshop</title>
+  <meta name="description" content="a small place for sounds, writing, and things worth passing on.">
+  <style>
+    :root {
+      --bg: #f1ece1;
+      --ink: #2a2520;
+      --ink-soft: #6b6258;
+      --accent: #8b3a2a;
+      --rule: #d8d0c0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino", Georgia, serif;
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 4rem 2rem;
+    }
+
+    main {
+      max-width: 36rem;
+      margin: 0 auto 0 max(2rem, 12vw);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.4rem;
+    }
+
+    .intro {
+      color: var(--ink-soft);
+      font-style: italic;
+      margin: 0 0 3rem;
+      max-width: 28rem;
+    }
+
+    .doors {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 4rem;
+    }
+
+    .doors a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1.15rem;
+      padding: 0.2rem 0;
+      width: max-content;
+      max-width: 100%;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .doors a::before {
+      content: "→ ";
+      color: var(--ink-soft);
+      transition: color 0.2s;
+    }
+
+    .doors a:hover,
+    .doors a:hover::before {
+      color: var(--accent);
+    }
+
+    .doors a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .doors small {
+      color: var(--ink-soft);
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 1rem;
+      max-width: 28rem;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 2rem 1.5rem; }
+      main { margin-left: 0; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
 </head>
 <body>
-  <p>the workshop is being built.</p>
+  <main>
+    <h1>jonah's workshop</h1>
+    <p class="intro">a small place for sounds, writing, and things worth passing on. mostly half-finished. wander around.</p>
+
+    <nav class="doors">
+      <a href="/sounds/">sounds <small>— music, mostly made in ableton</small></a>
+      <a href="/writing/">writing <small>— essays, fragments, notes</small></a>
+      <a href="/recommending/">recommending <small>— what's been worth my time</small></a>
+      <a href="/now/">now <small>— what i'm doing this month</small></a>
+      <a href="/colophon/">colophon <small>— about this site, about me</small></a>
+    </nav>
+
+    <footer>
+      <p>last tinkered: <time datetime="2026-05-15">may 2026</time></p>
+    </footer>
+  </main>
 </body>
 </html>
