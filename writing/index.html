@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>writing — jonah's workshop</title>
+  <meta name="description" content="essays, notes, and journal entries.">
+  <style>
+    :root {
+      --bg: #f1ece1;
+      --ink: #2a2520;
+      --ink-soft: #6b6258;
+      --accent: #8b3a2a;
+      --rule: #d8d0c0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino", Georgia, serif;
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 3rem 2rem 6rem;
+    }
+
+    main {
+      max-width: 38rem;
+      margin: 0 auto 0 max(2rem, 12vw);
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .back:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.4rem;
+    }
+
+    .intro {
+      color: var(--ink-soft);
+      font-style: italic;
+      margin: 0 0 3rem;
+      max-width: 30rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 3.5rem 0 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    section > p.section-intro {
+      color: var(--ink-soft);
+      font-style: italic;
+      margin: 0 0 2rem;
+      max-width: 30rem;
+    }
+
+    .entry {
+      margin-bottom: 2.5rem;
+    }
+
+    .entry.with-divider {
+      padding-bottom: 2.5rem;
+      border-bottom: 1px dashed var(--rule);
+    }
+
+    .entry h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 0.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .entry h3 a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .entry h3 a:hover {
+      border-bottom-color: var(--ink);
+    }
+
+    .entry .meta {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      font-style: italic;
+      margin: 0 0 0.4rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0 0 0.8rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.55rem;
+      border: 1px solid var(--rule);
+      color: var(--ink-soft);
+    }
+
+    .entry .excerpt {
+      margin: 0 0 0.8rem;
+    }
+
+    .entry .more {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-style: italic;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px;
+    }
+
+    .entry .more:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .entry .body p {
+      margin: 0 0 1rem;
+    }
+
+    .entry .body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .room-door {
+      display: block;
+      margin: 5rem 0 0;
+      padding: 1.8rem 2rem;
+      border: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+
+    .room-door:hover {
+      border-color: var(--accent);
+      background: rgba(139, 58, 42, 0.04);
+    }
+
+    .room-door h3 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 0 0 0.3rem;
+      letter-spacing: -0.01em;
+    }
+
+    .room-door p {
+      color: var(--ink-soft);
+      font-style: italic;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 2rem 1.5rem 4rem; }
+      main { margin-left: 0; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="/">← back to the workshop</a>
+
+    <h1>writing</h1>
+    <p class="intro">essays for the substack, notes from the phone, journal entries from a real notebook. different voices for different times of day.</p>
+
+    <section>
+      <h2>published</h2>
+      <p class="section-intro">essays from the substack. long-form. topics wander between ai, tech, business, music, and philosophy.</p>
+
+      <article class="entry">
+        <h3><a href="https://yoursubstack.substack.com/p/sample-post" target="_blank" rel="noopener">a sample substack title</a></h3>
+        <p class="meta">april 2026 · ~1800 words</p>
+        <div class="tags">
+          <span class="tag">ai</span>
+          <span class="tag">philosophy</span>
+        </div>
+        <p class="excerpt">paste the first paragraph or two of the post here, enough to give a sense of voice and topic. this is what makes someone click out to substack.</p>
+        <a class="more" href="https://yoursubstack.substack.com/p/sample-post" target="_blank" rel="noopener">read on substack →</a>
+      </article>
+
+      <article class="entry">
+        <h3><a href="https://yoursubstack.substack.com/p/another-post" target="_blank" rel="noopener">another substack title</a></h3>
+        <p class="meta">march 2026 · ~1200 words</p>
+        <div class="tags">
+          <span class="tag">music</span>
+          <span class="tag">tech</span>
+        </div>
+        <p class="excerpt">another excerpt here.</p>
+        <a class="more" href="https://yoursubstack.substack.com/p/another-post" target="_blank" rel="noopener">read on substack →</a>
+      </article>
+    </section>
+
+    <section>
+      <h2>notes</h2>
+      <p class="section-intro">things from the notes app. philosophical musings, half-thoughts, observations.</p>
+
+      <article class="entry with-divider">
+        <h3>on commuting</h3>
+        <p class="meta">may 2026</p>
+        <div class="body">
+          <p>longer notes are titled and get a dashed divider underneath. one to three paragraphs. doesn't conclude — just notices something and stops.</p>
+          <p>placeholder for a real note from the notes app. paste it in. lowercase if it fits, regular case if it doesn't.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <p class="meta">may 14, 2026</p>
+        <div class="body">
+          <p>shorter musings skip the title and just show a date. most systems are explained by the constraints they're trying to route around, not the goals they claim.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <p class="meta">may 8, 2026</p>
+        <div class="body">
+          <p>a city is the longest-running experiment in collective tolerance.</p>
+        </div>
+      </article>
+    </section>
+
+    <a class="room-door" href="/writing/journal/">
+      <h3>→ journal</h3>
+      <p>poetic writing from the physical notebook. quieter, slower. some entries play music while you read.</p>
+    </a>
+  </main>
+</body>
+</html>
