@@ -22,8 +22,8 @@ pattern introduced. Never let it drift.**
     /sounds/audio/                    self-hosted MP3s                            (folder)
     /writing/index.html               calm room (cream + serif)                   BUILT
     /writing/journal/index.html       poetic room with audio (dimmer cream)       BUILT
-    /recommending/index.html          bookshelf (cream + serif)                   BUILT
-    /recommending/dystopia/index.html dystopian-degraded subpage                  BUILT
+    /recommendations/index.html          bookshelf (cream + serif)                   BUILT
+    /recommendations/dystopia/index.html dystopian-degraded subpage                  BUILT
     /now/index.html                   what i'm doing this month                   TBD
     /colophon/index.html              about the site & me                         TBD
     /CLAUDE.md                        this file
@@ -37,7 +37,7 @@ spaces but never feel lost.
 ## Aesthetics — four palettes in use
 
 ### Cream-serif (default)
-Used on: /, /writing/, /recommending/, /now/, /colophon/
+Used on: /, /writing/, /recommendations/, /now/, /colophon/
 --bg: #f1ece1;    --ink: #2a2520;    --ink-soft: #6b6258;
 --accent: #8b3a2a;    --rule: #d8d0c0;
 Font: `"Iowan Old Style", "Palatino", Georgia, serif`
@@ -60,7 +60,7 @@ Atmosphere: dark, electric, after-midnight, post-rave
 Custom JS audio player (no native <audio> visible)
 
 ### Dystopian-degraded
-Used on: /recommending/dystopia/
+Used on: /recommendations/dystopia/
 --bg: #1a1612;    --ink: #c9b896;    --ink-soft: #7a6a52;
 --accent: #ff9a3c;    --warn: #ff5630;    --rule: #3a322a;
 Font: same serif stack as cream (Iowan Old Style) for titles/body, monospace
@@ -100,7 +100,7 @@ Structure:
 - `<div class="shelf-body">` wraps the entries
 Multiple shelves can be open at once. Add `name="shelf"` to all <details>
 elements on a page to make them mutually exclusive (browser feature, not JS).
-First used on /recommending/.
+First used on /recommendations/.
 
 ## The .doorway component (cross-aesthetic links)
 A large bordered card used to link from one room to a tonally different
@@ -110,7 +110,7 @@ target. Structure:
 - `.label` — small italic descriptor ("a darker shelf →")
 - `<h2>` — italic, the destination name
 - `<p>` — one-line teaser of what's in the room
-First used on /recommending/ to link to /recommending/dystopia/.
+First used on /recommendations/ to link to /recommendations/dystopia/.
 
 ## The .scored-to component (journal only)
 Used to pair an entry with a song. Two patterns share the same styling:
@@ -168,14 +168,14 @@ never touch the JS.
 5. Commit.
 
 ### Add a recommendation
-1. Open /recommending/index.html. Find the matching shelf (`<details class="shelf">`).
+1. Open /recommendations/index.html. Find the matching shelf (`<details class="shelf">`).
 2. Copy an existing `<article class="entry">` inside that shelf's `.shelf-body`.
 3. Update h3 link, meta (author/creator · year · format), excerpt, and .ext href + label.
 4. Keep tone lowercase. Excerpt is one sentence.
 5. Commit.
 
 ### Add a dystopia entry
-1. Open /recommending/dystopia/index.html.
+1. Open /recommendations/dystopia/index.html.
 2. Copy an existing `<article class="entry">`.
 3. Increment the rec-id: rec.005, rec.006, etc. // type (book, film, series, essay, etc).
 4. Update h3 link, meta (author · year · format), excerpt, .ext href.
