@@ -22,8 +22,8 @@ pattern introduced. Never let it drift.**
     /sounds/audio/                    self-hosted MP3s                            (folder)
     /writing/index.html               calm room (cream + serif)                   BUILT
     /writing/journal/index.html       poetic room with audio (dimmer cream)       BUILT
-    /recommending/index.html          bookshelf (cream + serif)                   TBD
-    /recommending/dystopia/index.html dystopian-degraded subpage                  TBD
+    /recommending/index.html          bookshelf (cream + serif)                   BUILT
+    /recommending/dystopia/index.html dystopian-degraded subpage                  BUILT
     /now/index.html                   what i'm doing this month                   TBD
     /colophon/index.html              about the site & me                         TBD
     /CLAUDE.md                        this file
@@ -60,9 +60,16 @@ Atmosphere: dark, electric, after-midnight, post-rave
 Custom JS audio player (no native <audio> visible)
 
 ### Dystopian-degraded
-Used on: /recommending/dystopia/ (TBD)
-Charcoal background, sodium amber accent, mixed mono/serif typography,
-subtle CRT/scanline texture. To be designed when the page is built.
+Used on: /recommending/dystopia/
+--bg: #1a1612;    --ink: #c9b896;    --ink-soft: #7a6a52;
+--accent: #ff9a3c;    --warn: #ff5630;    --rule: #3a322a;
+Font: same serif stack as cream (Iowan Old Style) for titles/body, monospace
+stack (Berkeley Mono → fallbacks) for ids, meta, ext links via `.mono` utility.
+Atmosphere: warm charcoal, sodium-amber streetlight, post-collapse archive
+Texture: subtle CRT scanlines via `body::before` with mix-blend-mode multiply,
+sodium-lit vignette via `body::after`. Honors prefers-reduced-motion.
+.entry variant: left rule border, mono rec-id prefix (rec.NNN // type),
+amber accent on hover with sodium glow text-shadow.
 
 ## Layout invariants (every page)
 - Asymmetric left-leaning content: `margin: 0 auto 0 max(2rem, 12vw)` on `main`
@@ -84,6 +91,26 @@ Variants:
 - Tabular variant on /sounds/ uses `display: grid` with track number column
 - Journal variant uses `<h2>` instead of `<h3>` (entries are the page's
   primary content, not nested under sections)
+
+## The .shelf component (parent listing pages)
+Collapsible category using native `<details>` / `<summary>`. Zero JS.
+Structure:
+- `<details class="shelf">` wraps each category
+- `<summary>` is the label; ::after pseudo-element shows + / – indicator
+- `<div class="shelf-body">` wraps the entries
+Multiple shelves can be open at once. Add `name="shelf"` to all <details>
+elements on a page to make them mutually exclusive (browser feature, not JS).
+First used on /recommending/.
+
+## The .doorway component (cross-aesthetic links)
+A large bordered card used to link from one room to a tonally different
+subroom. Styled in the host page's palette but with italic h2 signaling
+"different room ahead". Whole card is one `<a>` element so it's a big
+target. Structure:
+- `.label` — small italic descriptor ("a darker shelf →")
+- `<h2>` — italic, the destination name
+- `<p>` — one-line teaser of what's in the room
+First used on /recommending/ to link to /recommending/dystopia/.
 
 ## The .scored-to component (journal only)
 Used to pair an entry with a song. Two patterns share the same styling:
@@ -139,6 +166,21 @@ never touch the JS.
 4. Add a `<div class="divider">· · ·</div>` after the entry if there are
    more entries below.
 5. Commit.
+
+### Add a recommendation
+1. Open /recommending/index.html. Find the matching shelf (`<details class="shelf">`).
+2. Copy an existing `<article class="entry">` inside that shelf's `.shelf-body`.
+3. Update h3 link, meta (author/creator · year · format), excerpt, and .ext href + label.
+4. Keep tone lowercase. Excerpt is one sentence.
+5. Commit.
+
+### Add a dystopia entry
+1. Open /recommending/dystopia/index.html.
+2. Copy an existing `<article class="entry">`.
+3. Increment the rec-id: rec.005, rec.006, etc. // type (book, film, series, essay, etc).
+4. Update h3 link, meta (author · year · format), excerpt, .ext href.
+5. Keep meta in the .mono class. Excerpt stays in serif.
+6. Commit.
 
 ### Add a workshop door (new section) to the home page
 1. In `/index.html`, inside `<nav class="doors">`, copy an `<a>` element.
