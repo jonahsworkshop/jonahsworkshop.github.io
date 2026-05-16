@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>colophon · Jonah's Workshop</title>
+<style>
+  :root {
+    --bg: #f1ece1;
+    --ink: #2a2520;
+    --ink-soft: #6b6258;
+    --accent: #8b3a2a;
+    --rule: #d8d0c0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  main {
+    max-width: 36rem;
+    margin: 0 auto 0 max(2rem, 12vw);
+    padding: 3rem 1.5rem 6rem 0;
+  }
+  @media (max-width: 600px) {
+    main { margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 2.5rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+  .back:hover { color: var(--accent); }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 500;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.01em;
+  }
+  .intro {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 3rem;
+    font-size: 0.95rem;
+  }
+
+  section { margin: 0 0 2.75rem; }
+  section > h2 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  section p { margin: 0 0 1rem; }
+  section p:last-child { margin-bottom: 0; }
+  section a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  section a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* spec list for tech stack */
+  dl.spec {
+    margin: 0;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.5rem 1.25rem;
+    font-size: 0.95rem;
+  }
+  dl.spec dt {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  dl.spec dd { margin: 0; }
+  @media (max-width: 600px) {
+    dl.spec { gap: 0.4rem 0.9rem; }
+  }
+
+  /* rooms list with palette swatches */
+  .rooms {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .rooms li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+  }
+  .rooms li:last-child { border-bottom: none; }
+  .rooms .swatch {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transform: translateY(1px);
+  }
+  .rooms .name {
+    flex-shrink: 0;
+    font-style: italic;
+    color: var(--ink-soft);
+    min-width: 9rem;
+  }
+  .rooms .where { color: var(--ink); }
+
+  .signoff {
+    margin-top: 3.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">← back to the workshop</a>
+
+  <h1>colophon</h1>
+  <p class="intro">About this website and the different rooms.</p>
+
+  <section>
+    <h2>the site</h2>
+    <p>Jonah's workshop is a personal site built as a small house of rooms. Each section has its own atmosphere — a writing room, a sounds room, a recommendations bookshelf, a dystopia subroom — connected by a quiet hallway. </p>
+    <p>The site has no analytics, no cookies, no popups, no newsletter capture. You can simply leave by closing the tab.</p>
+  </section>
+
+  <section>
+    <h2>the stack</h2>
+    <dl class="spec">
+      <dt>markup</dt>     <dd>plain html, one file per page</dd>
+      <dt>styles</dt>     <dd>css embedded in each page, no shared stylesheet</dd>
+      <dt>scripts</dt>    <dd>vanilla js, only where needed</dd>
+      <dt>fonts</dt>      <dd>system stacks only — no webfont requests</dd>
+      <dt>build</dt>      <dd>none. every page works as a static html file</dd>
+      <dt>hosting</dt>    <dd>github pages, auto-deploys on push</dd>
+      <dt>editor</dt>     <dd>github.dev in the browser</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>the rooms</h2>
+    <ul class="rooms">
+      <li>
+        <span class="swatch" style="background: #f1ece1; border: 1px solid #d8d0c0;"></span>
+        <span class="name">cream-serif</span>
+        <span class="where">home, writing, recommendations, now, colophon</span>
+      </li>
+      <li>
+        <span class="swatch" style="background: #ebe2c7; border: 1px solid #c9bba0;"></span>
+        <span class="name">cream, dimmer</span>
+        <span class="where">writing/journal</span>
+      </li>
+      <li>
+        <span class="swatch" style="background: #0c0c0c;"></span>
+        <span class="name">brutalist-techno</span>
+        <span class="where">sounds</span>
+      </li>
+      <li>
+        <span class="swatch" style="background: #1a1612;"></span>
+        <span class="name">dystopian-degraded</span>
+        <span class="where">recommendations/dystopia</span>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>influences</h2>
+    <p>shaped by years of reading personal sites. specific debts to the <a href="https://indieweb.org/" rel="noopener">indieweb</a> community, <a href="https://nownownow.com" rel="noopener">derek sivers' now movement</a>, and the slow web crowd. visually: old paperback covers, sodium-lit cities, the design of small magazines.</p>
+  </section>
+
+  <section>
+    <h2>the maker</h2>
+    <p>jonah. bronx. slowly walking through the world, apreciating its intricacies, and expressing feelings. this site is the workshop where some of those creations are displayed. it is a snapshot into my mind.</p>
+  </section>
+
+  <section>
+    <h2>find me</h2>
+    <p>
+      <a href="mailto:hello@example.com">email</a> ·
+      <a href="https://github.com/jonah-30" rel="noopener">github</a> ·
+      <a href="#">substack</a>
+    </p>
+  </section>
+
+  <p class="signoff"> Everything here is human made and is allowed to be imperfect.</p>
+</main>
+</body>
+</html>
