@@ -25,7 +25,7 @@ pattern introduced. Never let it drift.**
     /recommendations/index.html          bookshelf (cream + serif)                BUILT
     /recommendations/dystopia/index.html dystopian-degraded subpage               BUILT
     /now/index.html                   what i'm doing this month                   BUILT
-    /colophon/index.html              about the site & me                         BUILT
+    /about/index.html              about the site & me                         BUILT
     /CLAUDE.md                        this file
 
 ## Design principle: page-as-room
@@ -37,7 +37,7 @@ spaces but never feel lost.
 ## Aesthetics — four palettes in use
 
 ### Cream-serif (default)
-Used on: /, /writing/, /recommendations/, /now/, /colophon/
+Used on: /, /writing/, /recommendations/, /now/, /about/
 --bg: #f1ece1;    --ink: #2a2520;    --ink-soft: #6b6258;
 --accent: #8b3a2a;    --rule: #d8d0c0;
 Font: `"Iowan Old Style", "Palatino", Georgia, serif`
@@ -189,8 +189,8 @@ never touch the JS.
 3. Keep entries to a handful per section. The page is a snapshot, not an archive.
 4. Commit.
 
-### Update /colophon/
-1. Open /colophon/index.html. Sections are stable — edit prose in place.
+### Update /about/
+1. Open /about/index.html. Sections are stable — edit prose in place.
 2. Update the last-updated line in the signoff when something material changes.
 3. If a new room is added to the site, add it to the .rooms list with its bg
    color as the swatch (and border if the swatch is too pale to see on cream).
