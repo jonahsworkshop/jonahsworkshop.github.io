@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>now · Jonah's Workshop</title>
+<style>
+  :root {
+    --bg: #f1ece1;
+    --ink: #2a2520;
+    --ink-soft: #6b6258;
+    --accent: #8b3a2a;
+    --rule: #d8d0c0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  main {
+    max-width: 38rem;
+    margin: 0 auto 0 max(2rem, 12vw);
+    padding: 3rem 1.5rem 6rem 0;
+  }
+  @media (max-width: 600px) {
+    main { margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 2.5rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+  .back:hover { color: var(--accent); }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 500;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.01em;
+  }
+  .intro {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 0.4rem;
+    font-size: 0.95rem;
+  }
+  .stamp {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    margin: 0 0 3rem;
+  }
+  .stamp .when {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  section { margin: 0 0 2.75rem; }
+  section > h2 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  section p { margin: 0 0 1rem; }
+  section p:last-child { margin-bottom: 0; }
+  section em { font-style: italic; }
+
+  /* .entry — sitewide pattern */
+  .entry { margin: 0 0 1.25rem; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin: 0 0 0.2rem;
+  }
+  .entry .meta {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.4rem;
+  }
+  .entry .excerpt { margin: 0; }
+  .entry.with-divider {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .entry.with-divider:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .footnote {
+    margin-top: 3.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .footnote a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .footnote a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">← back to the workshop</a>
+
+  <h1>now</h1>
+  <p class="intro">What i'm building, reading, thinking about.</p>
+
+  <section>
+    <h2>making</h2>
+    <article class="entry with-divider">
+      <h3>project name</h3>
+      <p class="meta">side project · started apr 2026</p>
+      <p class="excerpt">one or two sentences on what it is and where it's at.</p>
+    </article>
+    <article class="entry with-divider">
+      <h3>another thing</h3>
+      <p class="meta">experiment · ongoing</p>
+      <p class="excerpt">what i'm trying to figure out.</p>
+    </article>
+  </section>
+
+  <section>
+    <h2>reading</h2>
+    <p><em>book title</em> by author. <em>another book</em> by another author. an essay or two i can't stop thinking about.</p>
+  </section>
+
+  <section>
+    <h2>listening</h2>
+    <p>artist on repeat. <em>album name</em> when i need to focus. occasional revisit of <em>the old standby</em>.</p>
+  </section>
+
+  <section>
+    <h2>thinking about</h2>
+    <article class="entry with-divider">
+      <h3>a question or obsession</h3>
+      <p class="excerpt">a paragraph of musing. doesn't need to land anywhere — that's the point of a now page.</p>
+    </article>
+  </section>
+
+  <section>
+    <h2>where</h2>
+    <p>brooklyn, mostly. occasionally elsewhere.</p>
+  </section>
+
+  <p class="footnote">this is a <a href="https://nownownow.com/about" rel="noopener">now page</a> — a small monthly snapshot. inspired by derek sivers.</p>
+</main>
+</body>
+</html>
