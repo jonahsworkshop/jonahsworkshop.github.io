@@ -115,6 +115,20 @@
     text-decoration: none;
   }
   .footnote a:hover { text-decoration: underline; }
+
+  .playlist { margin-top: 1.25rem; }
+  .playlist-label {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    margin: 0 0 0.6rem;
+  }
+  .playlist-embed {
+    display: block;
+    border: 0;
+    border-radius: 12px;
+    width: 100%;
+  }
 </style>
 </head>
 <body>
@@ -127,38 +141,51 @@
   <section>
     <h2>making</h2>
     <article class="entry with-divider">
-      <h3>project name</h3>
+      <h3>This website</h3>
       <p class="meta">side project · started apr 2026</p>
-      <p class="excerpt">one or two sentences on what it is and where it's at.</p>
+      <p class="excerpt">I've got the structure and stack setup. Now I'm just filling in the pages with stuff I've made in the past and recomendations I have.</p>
     </article>
     <article class="entry with-divider">
-      <h3>another thing</h3>
+      <h3>A fitness app</h3>
       <p class="meta">experiment · ongoing</p>
-      <p class="excerpt">what i'm trying to figure out.</p>
+      <p class="excerpt">I'm vibe coding a fitness app that i'm now testing and in am in the process of releasing it and marketing. More soon...</p>
     </article>
   </section>
 
   <section>
     <h2>reading</h2>
-    <p><em>book title</em> by author. <em>another book</em> by another author. an essay or two i can't stop thinking about.</p>
+    <p><em>Red Rising </em> by Pierce Brown. An intricate, world-building, politcal-navigation, gut-wrenching dystopian series.</p>
   </section>
 
   <section>
     <h2>listening</h2>
     <p>artist on repeat. <em>album name</em> when i need to focus. occasional revisit of <em>the old standby</em>.</p>
+
+  <div class="playlist">
+      <p class="playlist-label">on repeat — a small collection of recent finds:</p>
+      <iframe
+        class="playlist-embed"
+        src="https://open.spotify.com/embed/playlist/6SUIZglLX252emKNVNxfcI?si=7b1b19b3eb1c46b1?utm_source=generator"
+        width="100%"
+        height="352"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="now — a spotify playlist"
+      ></iframe>
+    </div>
+    
   </section>
 
   <section>
     <h2>thinking about</h2>
     <article class="entry with-divider">
-      <h3>a question or obsession</h3>
-      <p class="excerpt">a paragraph of musing. doesn't need to land anywhere — that's the point of a now page.</p>
+      <h3>How can I take a step away from modern technology?</h3>
     </article>
   </section>
 
   <section>
     <h2>where</h2>
-    <p>brooklyn, mostly. occasionally elsewhere.</p>
+    <p>nola -> bronx -> now boston -> next berlin</p>
   </section>
 
   <p class="footnote">this is a <a href="https://nownownow.com/about" rel="noopener">now page</a> — a small monthly snapshot. inspired by derek sivers.</p>
