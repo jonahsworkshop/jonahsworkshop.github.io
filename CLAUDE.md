@@ -22,10 +22,10 @@ pattern introduced. Never let it drift.**
     /sounds/audio/                    self-hosted MP3s                            (folder)
     /writing/index.html               calm room (cream + serif)                   BUILT
     /writing/journal/index.html       poetic room with audio (dimmer cream)       BUILT
-    /recommendations/index.html          bookshelf (cream + serif)                   BUILT
-    /recommendations/dystopia/index.html dystopian-degraded subpage                  BUILT
-    /now/index.html                   what i'm doing this month                   TBD
-    /colophon/index.html              about the site & me                         TBD
+    /recommendations/index.html          bookshelf (cream + serif)                BUILT
+    /recommendations/dystopia/index.html dystopian-degraded subpage               BUILT
+    /now/index.html                   what i'm doing this month                   BUILT
+    /colophon/index.html              about the site & me                         BUILT
     /CLAUDE.md                        this file
 
 ## Design principle: page-as-room
@@ -181,6 +181,20 @@ never touch the JS.
 4. Update h3 link, meta (author · year · format), excerpt, .ext href.
 5. Keep meta in the .mono class. Excerpt stays in serif.
 6. Commit.
+
+### Update /now/ (monthly refresh)
+1. Open /now/index.html. Update the .stamp date (e.g., "updated jun 2026").
+2. Replace content in each section: making (entries), reading/listening (prose),
+   thinking (entries), where (one line).
+3. Keep entries to a handful per section. The page is a snapshot, not an archive.
+4. Commit.
+
+### Update /colophon/
+1. Open /colophon/index.html. Sections are stable — edit prose in place.
+2. Update the last-updated line in the signoff when something material changes.
+3. If a new room is added to the site, add it to the .rooms list with its bg
+   color as the swatch (and border if the swatch is too pale to see on cream).
+4. Commit.
 
 ### Add a workshop door (new section) to the home page
 1. In `/index.html`, inside `<nav class="doors">`, copy an `<a>` element.
