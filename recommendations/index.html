@@ -66,13 +66,13 @@
     font-size: 1.05rem;
   }
   .shelf summary::-webkit-details-marker { display: none; }
-  .shelf summary::after {
+  .shelf > summary::after {
     content: '+';
     color: var(--ink-soft);
     font-size: 1.2rem;
   }
-  .shelf[open] summary::after { content: '–'; }
-  .shelf summary:hover { color: var(--accent); }
+  .shelf[open] > summary::after { content: '–'; }
+  .shelf > summary:hover { color: var(--accent); }
   .shelf-body { padding: 0.25rem 0 1.5rem; }
 
   /* .entry — matches sitewide pattern */
@@ -110,6 +110,70 @@
     font-style: italic;
   }
   .entry .ext:hover { text-decoration: underline; }
+
+  /* .entry--deep — expandable entry with writeup + video essays.
+     Uses a nested <details> inside the shelf's <details>. */
+  .deep-dive {
+    margin: 0.4rem 0 0.6rem;
+  }
+  .deep-dive summary {
+    list-style: none;
+    cursor: pointer;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    padding: 0.25rem 0;
+    display: inline-block;
+  }
+  .deep-dive summary::-webkit-details-marker { display: none; }
+  .deep-dive summary::before {
+    content: '+ ';
+    color: var(--ink-soft);
+  }
+  .deep-dive[open] summary::before { content: '– '; }
+  .deep-dive summary:hover { color: var(--accent); }
+
+  .deep-dive-body {
+    padding: 0.5rem 0 0.25rem 1rem;
+    border-left: 1px solid var(--rule);
+    margin: 0.4rem 0 0.6rem;
+  }
+  .deep-dive-body .prose p {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+  }
+  .deep-dive-body .prose p:last-child { margin-bottom: 0; }
+  .deep-dive-body h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-style: italic;
+    margin: 1.25rem 0 0.5rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .deep-dive-body .essays {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .deep-dive-body .essays li {
+    margin: 0 0 0.45rem;
+    font-size: 0.95rem;
+  }
+  .deep-dive-body .essays a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .deep-dive-body .essays a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .deep-dive-body .essay-meta {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
 
   /* .doorway — cross-aesthetic link to subroom */
   .doorway {
@@ -158,17 +222,65 @@
         <p class="excerpt">a sentence about why this stuck with me.</p>
         <a class="ext" href="#">find it →</a>
       </article>
-      <!-- add more book entries here -->
     </div>
   </details>
 
   <details class="shelf">
-    <summary>shows &amp; films</summary>
+    <summary>shows</summary>
     <div class="shelf-body">
+
+      <article class="entry entry--deep">
+        <h3><a href="https://www.hbo.com/the-wire">The Wire</a></h3>
+        <p class="meta">David Simon · 2002–2008 · 5 seasons · HBO</p>
+        <p class="excerpt">My favorite Show - Five seasons, five american institutions, one slow-burning argument about why nothing changes. </p>
+
+        <details class="deep-dive">
+          <summary>why i love it · video essays</summary>
+          <div class="deep-dive-body">
+            <div class="prose">
+              <p>an incredible tv show. it's entertaining in a way that sneaks up on you — slow first episode, characters who don't introduce themselves, dialogue you have to lean in for — and then suddenly you care about everyone on screen and can't stop watching.</p>
+              <p>more than that, it opened my eyes to how american institutions actually work, and more importantly how they don't. each season takes on a different one — the drug trade, the docks, city hall, the schools, the newsroom — and the show keeps making the same point in different costumes: the systems aren't broken, they're working exactly as designed, just not for the people they claim to serve. the people trying to do the right thing get ground down. the people gaming the numbers get promoted.</p>
+              <p>it's also one of the only shows i've seen where nobody is a hero and nobody is a villain. you'll spend a season hating someone and then start rooting for them. you'll watch a character you love make a decision that's clearly wrong and totally understand why they made it. it changed how i read the news, how i think about reform, how i think about why smart, well-meaning people end up running broken things.</p>
+            </div>
+
+            <h4>video essays worth your time</h4>
+            <ul class="essays">
+              <li>
+                <a href="https://youtu.be/WcRE25X6gXI?si=yiHnDg4FgPRf9Z-y">How The Wire Changed Television</a>
+                <span class="essay-meta">— Cinemanic, 11 min</span>
+              </li>
+              <li>
+                <a href="https://youtu.be/PTSGYgvypFY?si=AkqXjR6CoPS_0mTv">The Wire's Most Underrated Season</a>
+                <span class="essay-meta">— Cinemanic, 23 min</span>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/watch?v=J60Awpg733I">The Wire's Most Ambitious Season</a>
+                <span class="essay-meta">— Cinemanic, ~16 min</span>
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <a class="ext" href="https://www.hbo.com/the-wire">watch →</a>
+      </article>
+
       <article class="entry">
         <h3><a href="#">title goes here</a></h3>
         <p class="meta">creator · 20xx · 1 season</p>
         <p class="excerpt">what makes this worth your evening.</p>
+        <a class="ext" href="#">watch →</a>
+      </article>
+
+    </div>
+  </details>
+
+  <details class="shelf">
+    <summary>movies</summary>
+    <div class="shelf-body">
+      <article class="entry">
+        <h3><a href="#">title goes here</a></h3>
+        <p class="meta">director · 20xx · 118 min</p>
+        <p class="excerpt">why this one lives rent-free.</p>
         <a class="ext" href="#">watch →</a>
       </article>
     </div>
