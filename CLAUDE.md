@@ -96,7 +96,9 @@ Variants:
 Collapsible category using native `<details>` / `<summary>`. Zero JS.
 Structure:
 - `<details class="shelf">` wraps each category
-- `<summary>` is the label; ::after pseudo-element shows + / – indicator
+- `<summary>` is the label; `.shelf > summary::after` shows + / – indicator.
+  The `>` direct-child is important — without it the marker leaks into any
+  nested `<details>` inside a shelf (e.g. `.deep-dive`).
 - `<div class="shelf-body">` wraps the entries
 Multiple shelves can be open at once. Add `name="shelf"` to all <details>
 elements on a page to make them mutually exclusive (browser feature, not JS).
@@ -111,6 +113,27 @@ target. Structure:
 - `<h2>` — italic, the destination name
 - `<p>` — one-line teaser of what's in the room
 First used on /recommendations/ to link to /recommendations/dystopia/.
+
+## The .entry--deep / .deep-dive component (expandable entries)
+A variant of `.entry` that contains a nested `<details class="deep-dive">`
+for a longer writeup and/or attached links (video essays, related reading).
+The shelf's `<details>` collapses the whole entry; the inner `<details>`
+collapses just the deep dive. Both use native disclosure, zero JS.
+
+Structure:
+- `<article class="entry entry--deep">` — host entry, normal .entry contents
+- `<details class="deep-dive">` — nested disclosure with italic `<summary>`
+- `<div class="deep-dive-body">` — wraps the expanded content, left rule border
+- `<div class="prose">` — paragraphs (one or more `<p>`)
+- `<h4>` — sub-labels inside the deep dive (e.g. "video essays worth your time")
+- `<ul class="essays">` — attached links, each `<li>` formatted as:
+  `<a>title</a><span class="essay-meta">— channel/source, length</span>`
+
+Marker style: `+` / `–` as a *prefix* (italic, light) to distinguish from
+the shelf's right-aligned `+` / `–` (heavy, categorical). Visually signals
+"smaller drill-down, not a new section."
+
+First used on /recommendations/ (The Wire entry under `shows`).
 
 ## The .scored-to component (journal only)
 Used to pair an entry with a song. Two patterns share the same styling:
@@ -173,6 +196,15 @@ never touch the JS.
 3. Update h3 link, meta (author/creator · year · format), excerpt, and .ext href + label.
 4. Keep tone lowercase. Excerpt is one sentence.
 5. Commit.
+
+### Add a recommendation with a deep-dive (writeup + video essays)
+1. Open /recommendations/index.html. Find the matching shelf.
+2. Copy The Wire entry (`<article class="entry entry--deep">`) as the template.
+3. Fill in the prose paragraphs inside `<div class="prose">`. Lowercase tone,
+   first-person, no quoting copyrighted material.
+4. Add `<li>` entries to `<ul class="essays">` for each linked video/essay.
+5. Strip YouTube tracking params from URLs (`?si=...` after the video id).
+6. Commit.
 
 ### Add a dystopia entry
 1. Open /recommendations/dystopia/index.html.
