@@ -152,6 +152,39 @@
       margin-bottom: 0;
     }
 
+    /* fold: keep the newest entries visible, tuck older ones behind a toggle.
+       native <details>, zero JS. distinct from .shelf (which collapses a whole
+       category) — this collapses only the overflow of one running list. */
+    .more-entries {
+      margin: 0;
+    }
+
+    .more-entries > summary {
+      list-style: none;
+      display: inline-block;
+      cursor: pointer;
+      color: var(--accent);
+      font-style: italic;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.9rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--rule);
+      user-select: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .more-entries > summary::-webkit-details-marker { display: none; }
+    .more-entries > summary::marker { content: ""; }
+
+    .more-entries > summary:hover {
+      border-color: var(--accent);
+      background: rgba(139, 58, 42, 0.05);
+    }
+
+    .more-entries > summary .when-open { display: none; }
+    .more-entries[open] > summary .when-open { display: inline; }
+    .more-entries[open] > summary .when-closed { display: none; }
+
     .room-door {
       display: block;
       margin: 5rem 0 0;
@@ -200,6 +233,17 @@
       <p class="section-intro">essays from the substack. long-form. topics wander between ai, tech, business, music, and philosophy.</p>
 
       <article class="entry">
+        <h3><a href="https://jonahs30.substack.com/p/a-critique-of-mainstream-music-its" target="_blank" rel="noopener">A Critique of Mainstream Music - It’s Poorly Mixed</a></h3>
+        <p class="meta">May 2026 · ~1300 words</p>
+        <div class="tags">
+          <span class="tag">music</span>
+          <span class="tag">mainstream</span>
+        </div>
+        <p class="excerpt">In the process of making music there is a step called mixing. It comes right before the final stage, mastering, where you polish the entire song and push it to the desired loudness and consistency for release.</p>
+        <a class="more" href="https://jonahs30.substack.com/p/a-critique-of-mainstream-music-its" target="_blank" rel="noopener">read on substack →</a>
+      </article>
+
+      <article class="entry">
         <h3><a href="https://jonahs30.substack.com/p/the-revival-of-in-person-shopping" target="_blank" rel="noopener">The Revival of In-Person Shopping</a></h3>
         <p class="meta">april 2026 · ~900 words</p>
         <div class="tags">
@@ -210,46 +254,220 @@
           However, since then, Amazon has added over $2 trillion to its market valuation, and nearly 80% of all advertisement spending is now through a digital medium. Now we click a few times on our computer, get out of bed the next morning, and find the package at our doorstep, all without leaving the comfort/prison of our home.</p>
         <a class="more" href="https://jonahs30.substack.com/p/the-revival-of-in-person-shopping" target="_blank" rel="noopener">read on substack →</a>
       </article>
-
-      <article class="entry">
-        <h3><a href="https://jonahs30.substack.com/p/a-critique-of-mainstream-music-its" target="_blank" rel="noopener">A Critique of Mainstream Music - It’s Poorly Mixed
-</a></h3>
-        <p class="meta">May 2026 · ~1300 words</p>
-        <div class="tags">
-          <span class="tag">music</span>
-          <span class="tag">mainstream</span>
-        </div>
-        <p class="excerpt">another excerpt here.</p>
-        <a class="more" href="https://jonahs30.substack.com/p/a-critique-of-mainstream-music-its" target="_blank" rel="noopener">read on substack →</a>
-      </article>
     </section>
 
     <section>
-      <h2>notes</h2>
-      <p class="section-intro">things from the notes app. philosophical musings, half-thoughts, observations.</p>
+      <h2>My Stream of Consciousness</h2>
+      <p class="section-intro">philosophical musings, half-thoughts, observations. newest on top. some quick, some that kept unspooling. dated as written.</p>
+
+      <!-- newest entries, always visible -->
+      <article class="entry with-divider">
+        <h3>Music and Dancing</h3>
+        <p class="meta">april 20, 2026</p>
+        <div class="body">
+          <p>Music fills the space between us. It makes us whole. We hear our life and everyone else hears their own life, yet the same sounds are playing to all of us. We get comfort knowing that our life is the same as everyone else’s. We feel the same things, we understand the same things, we experience the same things. When we dance we move around and connect with the people around us. Our souls touch.</p>
+        </div>
+      </article>
 
       <article class="entry with-divider">
-        <h3>on commuting</h3>
-        <p class="meta">may 2026</p>
+        <h3>Emotion vs Thought</h3>
+        <p class="meta">october 22, 2023</p>
         <div class="body">
-          <p>longer notes are titled and get a dashed divider underneath. one to three paragraphs. doesn't conclude — just notices something and stops.</p>
-          <p>placeholder for a real note from the notes app. paste it in. lowercase if it fits, regular case if it doesn't.</p>
+          <p>Everyone is born with a level of emotion and a level of thoughts. These two battle each other over whether someone lives more in their mind (thoughts) vs in the present and in reality (emotions).</p>
+          <p>When people overthink and get stuck in their thoughts they become trapped (or stuck in the mud) and unable to act. On the flip side, when one gets overtaken by powerful emotions they act out in an irrational way without thinking about it. Everyone is born with an innate mixture of these and lives accordingly. Having a good balance is key to truly living, acting thoughtfully, in the world.</p>
+          <p>And to really thrive you have to let thought and emotion work together to enter a flow state and let yourself go.</p>
         </div>
       </article>
 
-      <article class="entry">
-        <p class="meta">may 14, 2026</p>
-        <div class="body">
-          <p>shorter musings skip the title and just show a date. most systems are explained by the constraints they're trying to route around, not the goals they claim.</p>
-        </div>
-      </article>
+      <!-- the rest, folded -->
+      <details class="more-entries">
+        <summary>
+          <span class="when-closed">older musings ↓</span>
+          <span class="when-open">fewer ↑</span>
+        </summary>
 
-      <article class="entry">
-        <p class="meta">may 8, 2026</p>
-        <div class="body">
-          <p>a city is the longest-running experiment in collective tolerance.</p>
-        </div>
-      </article>
+        <article class="entry with-divider">
+          <h3>The Notes from Underground</h3>
+          <p class="meta">september 27, 2023</p>
+          <div class="body">
+            <p>The UM’s home, which is described as a horrid, disgusting place, is just how he views it. He is a pessimist and is filled by hate, so he thinks everything he has is wrong. He could be living in a mansion but he would look at it as he described his home in his notes. Those notes are his inner thoughts speaking.</p>
+            <p>The UM is figuratively underground because he doesn’t live or appreciate anything the world offers him.</p>
+            <p>The UM believes that a utopian society would be one without pain and suffering, but, at the same time, people need them to be happy; and to live without them would entail losing free will.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>Cognitive Realization</h3>
+          <p class="meta">august 28, 2023</p>
+          <div class="body">
+            <p>We can approach situations in a multitude of different ways. We can learn from past experiences and are flexible enough to change our approach to a more positive and relaxed one.</p>
+          </div>
+        </article>
+
+        <article class="entry with-divider">
+          <h3>Superficial Sense of Self</h3>
+          <p class="meta">august 25, 2023</p>
+          <div class="body">
+            <p>As people, influenced by society, we all have a superficial sense of our self. This superficial self is what we show to others. We see ourselves as the activities we do and the people we are around. But those don’t have any real effect on our true self. To find our true self and take control of our free will we have to let go of any pressures and influences we feel. We need to let our superficial, outer layer dissolve until our bare self is all that’s left. Only when we completely let go do we become our true selves. And once we become ourselves we have true free will and are free from the chains of others and society.</p>
+          </div>
+        </article>
+
+        <article class="entry with-divider">
+          <h3>Live with eyes open</h3>
+          <p class="meta">june 26, 2023</p>
+          <div class="body">
+            <p>I naturally live through thinking. I see the outline of what’s around me but my mind predicts all the details. My mind bases its predictions on its knowledge and past experience. The problem with this is that everything is what I expect it to be and I don’t notice the beauty in the detail and subtle differences. When you start to let your eyes perceive before your brain you notice things you’ve never seen before and the world around us becomes infinitely more interesting and engaging. I want to start living consciously — and through my eyes instead of my brain.</p>
+            <p>Close your eyes. Take deep breaths. Inhale, exhale, inhale, exhale. Feel your body relax and your mind zoom in on the breath like a telescope. When your mind is clear of past thoughts, accept the refreshed perspective. Your eyelids, dragging in opposite directions, open and you start to live through your sight. Focusing on the present moment you admire the beauty in life and feel the corners of your mouth pull up and away into an enchanting world. Embrace living by accepting nature’s aroma, expressing yourself through art, and questioning the unknown. I want to teach Conscious Living Through Appreciation.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>God</h3>
+          <p class="meta">june 23, 2023</p>
+          <div class="body">
+            <p>I believe that there is a “god”. Not in the traditional way with religion, but I believe that there is an energy or force that can be called “god”. That force is the life that fuels living things — people, animals, nature.</p>
+            <p>I think praying is a way of connecting with your inner self or the “god”-like energy in you. It is a way to reflect on yourself and it pushes you to believe in yourself. I want to pray through meditation and being creative.</p>
+          </div>
+        </article>
+
+        <article class="entry with-divider">
+          <p class="meta">june 21, 2023</p>
+          <div class="body">
+            <p>I plan to live and enjoy my life to the fullest when I am young. But when I am older, before I die, I want to connect with “God” or my inner self. To do this I will need to let go of my pleasures and probably other stuff, but I don’t know what yet.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>Brain &gt; Athletics</h3>
+          <p class="meta">june 19, 2023</p>
+          <div class="body">
+            <p>Humans are proof that smarts are the greatest attribute. Humans have dominated every species on earth, not because we are physically dominant but mentally smarter than any other species.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>Origami</h3>
+          <p class="meta">june 14, 2023</p>
+          <div class="body">
+            <p>Origami is beautiful. It is turning paper into something else. We are creating; it is beautiful. Artistic creation is amazing.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>Soccer</h3>
+          <p class="meta">june 14, 2023</p>
+          <div class="body">
+            <p>When I play soccer and am in the right headspace I get into the zone, the best feeling ever. I let go of any outside thoughts and focus my entire mind on playing. This improves my playing ability greatly because I am playing fully in the present moment, analyzing the field every possible second. I play so well in this state because I don’t have any outside distractions and am able to play so much faster than I normally can. I love playing in this zone so much. It’s my favorite thing in the world to play world cup barefoot, as Germany. I love playing barefoot because I have so much more control over the ball without clunky shoes or cleats on. I also love being Germany.</p>
+          </div>
+        </article>
+
+        <article class="entry with-divider">
+          <p class="meta">june 13, 2023</p>
+          <div class="body">
+            <p>Most hand sports, like basketball and football, are very restricting. When you put your hands around the ball the game is dead. Soccer, on the other hand — the ball is never restricted in the same way (other than the goalie). This makes soccer a much more free-flowing game.</p>
+            <p>In soccer you use your feet to manipulate the ball and express yourself on the field. That’s the beauty of soccer.</p>
+            <p>Soccer is freeing.</p>
+            <p>Hockey is also a very freeing sport, similar to soccer. In hockey the stick is like the foot in soccer.</p>
+          </div>
+        </article>
+
+        <article class="entry with-divider">
+          <h3>The Bible is a Foreshadow</h3>
+          <p class="meta">june 2, 2023</p>
+          <div class="body">
+            <p>Religion is real.</p>
+            <p>The bible is a foreshadowing of what’s going to happen in the world.</p>
+          </div>
+        </article>
+
+        <article class="entry with-divider">
+          <h3>Side-Effects of Human Development</h3>
+          <p class="meta">may 27, 2023</p>
+          <div class="body">
+            <p>We have developed so much as a society and people live an extremely better lifestyle than in the past.</p>
+            <p>But people aren’t happier than they have been in the past. Instead, we have more mental issues. This is a result of the toxicity we put into our brains, such as technology and other materialistic obsessions.</p>
+            <p>Humans weren’t meant to have the amount of influx of chemicals that technology and other modern things have on us.</p>
+            <p>These are the negative side effects of our vast technological modernization and progression.</p>
+            <p>This goes to show that happiness is based on relativity.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>The chain</h3>
+          <p class="meta">may 26, 2023</p>
+          <div class="body">
+            <p>The chain, the folds, all of the intricate turns and pockets combining into one huge clump. Each time I found the right pattern of folds it transformed into one coherent chain. When I solved it, I created it for myself and I was able to reap its benefits, wearing it. But I must in time share its benefits and give it to someone else. It is a communal item, and will never have a true owner.</p>
+            <p>I was given a balled up clump of metal by my friend and he told me to untangle it for him. I untangled it to (re)create a simple golden chain. I put it on and will wear it for a time. After I appreciated its value I will give the chain back to my friend when I see him again.</p>
+          </div>
+        </article>
+
+        <article class="entry with-divider">
+          <p class="meta">june 14, 2023</p>
+          <div class="body">
+            <p>Today, 9 days later, I gave back to the community. I gave a chain I had to my friend Ben. This shows how much of a better world we would have if everyone lived in community. It also shows how the world and life balances out.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>A Principle of Writing</h3>
+          <p class="meta">may 26, 2023</p>
+          <div class="body">
+            <p>Order matters. The order in which information is relayed to the reader through your storytelling is extremely important. The manner in which they figure out what’s happening can play a huge role in their understanding of it. You can use this to really convey the ideas you want to show the reader.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>School System is Broken</h3>
+          <p class="meta">may 25, 2023</p>
+          <div class="body">
+            <p>It should be a playground of learning that cultivates the exploration of knowledge. It is not about learning, but instead about “civilizing” us to give up our free will and adhere to society. Through grades, we are constantly judged and are taught to revolve our journey for knowledge around making the judgements — the grades — be better. This trains us to live in a society that judges our every action and to follow and listen to the judgements. We are trained to give up our true self and turn into a follower of society.</p>
+            <p>These judgements and grades turn what should be beautiful and is in our human nature — questioning, learning, and understanding — into a journey of stress and loss of individuality. We are taught to base our journey around what other people think and not ourselves.</p>
+          </div>
+        </article>
+
+        <article class="entry with-divider">
+          <p class="meta">june 15, 2023</p>
+          <div class="body">
+            <p>The school system is horrible and ruins the basis of human community for many people. The basis of human community is sharing knowledge and developing as a whole community.</p>
+            <p>A good school system’s job is to develop and nurture the young into positive pieces of the community that is humanity. But instead it uses grades to game-ify one’s development and make students compete against each other when instead they should be cooperating.</p>
+            <p>Instead, it should cultivate community and the sharing of knowledge.</p>
+          </div>
+        </article>
+
+        <article class="entry with-divider">
+          <h3>Writing</h3>
+          <div class="body">
+            <p>I love writing because it helps me to slow my thinking down and lets me explore and develop my thoughts. When I’m just thinking, my head jumps around so fast between thoughts that it’s hard for me to dig deeper beyond a thought’s surface. But when I am writing, I can’t write so fast that it slows my mind down to the pace that I am writing. This allows me to stay on one thought or idea and take my time to really analyze and understand it.</p>
+            <p>I’m always thinking about so much at once, and just focusing on breathing helps me to keep my mind in one place and stay in the present moment. Similarly, writing helps me keep my mind in one place and focus on one thing. Writing and journaling can be a very powerful method to help me relax and slow down in life.</p>
+            <p>When I’m in my writing flow state I am fully in tune with my present thought. I am in a state of pure focus and am without distractions.</p>
+            <p>I can try to have the same result I get from writing from speaking. Because in a way they are the same. By speaking slowly and enunciating I can slow my thoughts and mind down and live in the present.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>The Greatest Question</h3>
+          <div class="body">
+            <p>Basis: we all live through our brain and our entire reality is the brain. The brain is such a crazy and amazing construct (or thing, idk how to describe it). Is everyone’s brain the same at birth, or is everyone’s brain different? (Nurture vs Nature)</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>Time</h3>
+          <div class="body">
+            <p>The way we as a society break down time — into years, weeks, days, hours, etc. — is horrible. We should just live in the present, but the structure of time turns our lives into routines. When instead we should just do as we want, whenever we want.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>Community Fulfillment</h3>
+          <div class="body">
+            <p>On earth every person has different physical and mental attributes. I think everyone has these attributes for certain reasons — we all are the way we are for a reason. Everyone’s own attributes are meant for them to do a certain task for the world. Everyone is different, and so we, the people of the world, must work together and complete our roles for the community of humanity. When everyone performs their roles when needed, we can fulfill and complete our community.</p>
+            <p>When everyone does what they were built to do for the entire community, the world becomes more communal and much more efficient. If everyone does their tasks for the benefit of the community we can complete each other.</p>
+            <p>For example, I am tall, so I was meant to reach tall things. So whenever someone is trying to get something high up, it is my duty in the community to help them out and get it. On the flip side, whenever there is something in a small congested space it is a smaller person’s duty to complete the task.</p>
+            <p>Everyone is a unique piece of a puzzle, which when complete is a community of humans in perfect harmony.</p>
+          </div>
+        </article>
+      </details>
     </section>
 
     <a class="room-door" href="/writing/journal/">
