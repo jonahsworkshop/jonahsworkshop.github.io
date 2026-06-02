@@ -191,16 +191,75 @@
       color: var(--bg);
     }
 
-    /* --- mix (spotify playlist) entries --- */
+    /* --- mix (spotify playlist) + album entries --- */
     .entry--mix .body { padding-top: 0; }
 
-    .entry--mix iframe {
+    .entry--mix iframe,
+    .entry--album iframe {
       width: 100%;
       border: 1px solid var(--rule);
       border-radius: 12px;
       display: block;
       color-scheme: normal;
     }
+
+    /* the released album is the headline of the Making tab */
+    .entry--album iframe { margin: 0 0 1rem; }
+
+    .entry--album .num {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* muted "coming soon" teaser */
+    .entry--soon .num,
+    .entry--soon h3,
+    .entry--soon .note { color: var(--ink-soft); }
+    .entry--soon h3 { font-weight: 400; }
+
+    /* --- collapsible blocks: album story + today section --- */
+    /* strip the native disclosure triangle so summaries match the button look */
+    details summary {
+      list-style: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+    details summary::-webkit-details-marker { display: none; }
+
+    /* summaries styled like the [ play ] / [ listen ] buttons for consistency */
+    .story > summary,
+    .today-toggle {
+      color: var(--accent);
+      background: none;
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .story > summary:hover,
+    .today-toggle:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* open/closed indicator driven purely by the [open] attribute */
+    .story > summary::after,
+    .today-toggle::after { content: " ▸"; }
+    .story[open] > summary::after,
+    .today-collapse[open] .today-toggle::after { content: " ▾"; }
+
+    .story { margin: 0 0 1rem; }
+    .story[open] > summary { margin-bottom: 1rem; }
+    .story .story-body p {
+      font-size: 0.9rem;
+      max-width: 32rem;
+      margin: 0 0 1rem;
+    }
+
+    .today-collapse[open] .today-toggle { margin-bottom: 1.5rem; }
 
     @media (max-width: 600px) {
       body { padding: 2rem 1.25rem 4rem; font-size: 14px; }
@@ -228,23 +287,35 @@
         <h2>Making</h2>
         <p>tracks, sketches, things in progress.</p>
 
-        <article class="entry">
-          <span class="num">01</span>
+        <!-- released album — the headline of this tab -->
+        <article class="entry entry--album">
+          <span class="num">LP</span>
           <div class="body">
-            <h3>untitled sketch #1</h3>
-            <p class="meta"><span>ambient</span><span>4:12</span><span>may 2026</span></p>
-            <p class="note">a loop i can't stop returning to. four chords, one delay, one tape stop at the end.</p>
-            <button class="play" data-src="/sounds/audio/sketch-01.mp3">[ play ]</button>
+            <h3>I Like To Tell Stories</h3>
+            <p class="meta"><span>birds of one</span><span>album</span><span>2026</span></p>
+            <p class="note">my debut record — a night on the dance floor and a story about getting lost in it, then finding your way back to a quieter kind of joy.</p>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/3xv5EOtQBTTjNSgz0KP8N2?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="I Like To Tell Stories — Birds Of One"></iframe>
+            <details class="story">
+              <summary>[ the story ]</summary>
+              <div class="story-body">
+                <p>I like To Tell Stories starts with my teenage self discovering adult vices. The first tracks capture the pleasure, indulgence, and thrill of these new experiences. Eventually, as with many of us I got lost in them and we get to Intrusive Thoughts which is by far the most experimental piece on the album. It acts as an anti-climax of the album and it's a turning point where I shift from indulgence to reflection. The next track Give It Life is an effort to get back to a normal life but its quieter and boring, in comparison to the party lifestyle. However, the feelings always come back and the final 3 tracks see me appreciating life with a new light of joy and maturity.</p>
+                <p>But I like To Tell Stories is also a night on the dance floor at a festival or a club going from one room to the next to: moving as one with 500 others on a packed dance floor, to laughing with an older guy at the bar, to peacefully watching the trees sway in the wind, to dancing on your own in the night sky.</p>
+                <p>And I like To Tell Stories is also the one memory you had from long ago that made you feel like you've never felt before, or the relationship with that person you won't ever forget, that day you ended up exhausted and full of life, that dream you know one day will happen, that night you thought would never end, I like To Tell Stories is anything and everything you want it to be.</p>
+                <p>And that's the most beautiful thing about music. Everyone can listen to the same thing and relate to it from different experiences and memories yet we all share those feelings. Music tells us that even though we are different we are not that different. Music comforts us, it brings us together, it lets us know that we are not alone, that other people feel these things too and have been through what we have been.</p>
+                <p>Music reminds us we are all Birds Of One.</p>
+              </div>
+            </details>
+            <a class="ext" href="https://linktr.ee/BirdsOfOne" target="_blank" rel="noopener">[ all platforms → ]</a>
           </div>
         </article>
 
-        <article class="entry">
-          <span class="num">02</span>
+        <!-- teaser placeholder -->
+        <article class="entry entry--soon">
+          <span class="num">~</span>
           <div class="body">
-            <h3>placeholder track #2</h3>
-            <p class="meta"><span>techno</span><span>6:38</span><span>apr 2026</span></p>
-            <p class="note">faster than what i usually make. trying to learn how to write something with momentum.</p>
-            <button class="play" data-src="/sounds/audio/sketch-02.mp3">[ play ]</button>
+            <h3>new experiments coming soon</h3>
+            <p class="meta"><span>in the workshop</span></p>
+            <p class="note">more loops, more rooms. check back.</p>
           </div>
         </article>
       </section>
@@ -259,167 +330,184 @@
         <article class="entry">
           <span class="num">→</span>
           <div class="body">
-            <h3>artist name — album title</h3>
-            <p class="meta"><span>ambient/drone</span><span>added may 2026</span></p>
-            <p class="note">a short note about why this is here. what it does to a room.</p>
-            <a class="ext" href="https://example.com">[ listen → ]</a>
+            <h3>WhoMadeWho — Every Minute Alone (Dead Remixes)</h3>
+            <p class="meta"><span>electronic</span><span>added jun 2026</span></p>
+            <p class="note">remix record that lives somewhere between the dancefloor and the drive home. the kind of thing that sounds like 4am feels.</p>
+            <a class="ext" href="https://open.spotify.com/album/0sjb58x1bYhJrQhoizYt50" target="_blank" rel="noopener">[ listen → ]</a>
           </div>
         </article>
 
         <article class="entry">
           <span class="num">→</span>
           <div class="body">
-            <h3>another artist — another album</h3>
-            <p class="meta"><span>techno</span><span>added apr 2026</span></p>
-            <p class="note">found it through a friend. been replaying the third track all month.</p>
-            <a class="ext" href="https://example.com">[ listen → ]</a>
+            <h3>Dire Straits — Brothers in Arms</h3>
+            <p class="meta"><span>rock</span><span>1985</span><span>added jun 2026</span></p>
+            <p class="note">Knopfler's guitar does things that shouldn't be possible. the second half of the record gets very quiet and just sits there — earns every minute of it.</p>
+            <a class="ext" href="https://open.spotify.com/album/15J400U0rEpgE64UQgtvLs" target="_blank" rel="noopener">[ listen → ]</a>
+          </div>
+        </article>
+
+        <article class="entry">
+          <span class="num">→</span>
+          <div class="body">
+            <h3>marvin gaye — what's going on</h3>
+            <p class="meta"><span>soul</span><span>1971</span><span>added may 2026</span></p>
+            <p class="note">a concept record that never stops feeling current — warm, restless, and somehow gentle about hard things. the way each track bleeds into the next is the whole point; you can't really play just one.</p>
+            <a class="ext" href="https://open.spotify.com/album/2v6ANhWhZBUKkg6pJJBs3B" target="_blank" rel="noopener">[ listen → ]</a>
           </div>
         </article>
       </section>
 
       <section>
         <h2>Today / wormholes</h2>
-        <p>days i fell into a music hole and kept digging. each one is its own evening — meant to be played in order, top to bottom.</p>
+        <p>days i fell into a music hole and kept digging. each one is its own evening — meant to be played in order, top to bottom. newest first.</p>
 
-        <article class="entry entry--mix">
-          <span class="num">01</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1t5IGOigNzYJb10KKymOBm?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 01"></iframe>
-          </div>
-        </article>
+        <details class="today-collapse">
+          <summary class="today-toggle">[ 20 evenings ]</summary>
+          <div class="today-list">
 
-        <article class="entry entry--mix">
-          <span class="num">02</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7AxeYLx1w3O1vlw47faLjN?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 02"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">20</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5o2HiUMFMPNQc9NESVMQlj?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 20"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">03</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7cW1lne8EE45beCI2oEBwR?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 03"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">19</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7pzjtIMuLTyx0BdvnwsMsP?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 19"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">04</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6Ft9Vd6ug9CtNInKLQiQzP?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 04"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">18</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/33M7LntnxtM9dRJmA1l77i?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 18"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">05</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4PMUd0GRd1wjUvCoRM14CB?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 05"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">17</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3xkr9T9SLh321F1IegK78G?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 17"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">06</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7dexVDrI0va3106Ll3KwkY?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 06"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">16</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2PrGTlhwSZSeTKtuS0Xwfi?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 16"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">07</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7DnI2gQnsgFYtlE1IOvnpS?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 07"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">15</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/08kQzv6AgUzCvhUBig8ZQF?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 15"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">08</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4e59jjgXHHmiccwZRAhV1f?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 08"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">14</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5fpxpLJANAPScVblsEqbtF?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 14"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">09</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2KgtNXJHLVwpGunuScjEzq?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 09"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">13</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5eOE8S3iFRRWeS5gRaR49o?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 13"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">10</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6H6rgxaicYGzWjj2rLvJ9K?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 10"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">12</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0mpEIE5ib3E0CWOcKK1vUg?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 12"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">11</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6SgIYsQEQC5Zr2lKlbHN2I?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 11"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">11</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6SgIYsQEQC5Zr2lKlbHN2I?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 11"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">12</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0mpEIE5ib3E0CWOcKK1vUg?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 12"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">10</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6H6rgxaicYGzWjj2rLvJ9K?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 10"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">13</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5eOE8S3iFRRWeS5gRaR49o?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 13"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">09</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2KgtNXJHLVwpGunuScjEzq?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 09"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">14</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5fpxpLJANAPScVblsEqbtF?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 14"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">08</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4e59jjgXHHmiccwZRAhV1f?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 08"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">15</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/08kQzv6AgUzCvhUBig8ZQF?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 15"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">07</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7DnI2gQnsgFYtlE1IOvnpS?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 07"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">16</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2PrGTlhwSZSeTKtuS0Xwfi?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 16"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">06</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7dexVDrI0va3106Ll3KwkY?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 06"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">17</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3xkr9T9SLh321F1IegK78G?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 17"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">05</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4PMUd0GRd1wjUvCoRM14CB?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 05"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">18</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/33M7LntnxtM9dRJmA1l77i?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 18"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">04</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6Ft9Vd6ug9CtNInKLQiQzP?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 04"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">19</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7pzjtIMuLTyx0BdvnwsMsP?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 19"></iframe>
-          </div>
-        </article>
+            <article class="entry entry--mix">
+              <span class="num">03</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7cW1lne8EE45beCI2oEBwR?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 03"></iframe>
+              </div>
+            </article>
 
-        <article class="entry entry--mix">
-          <span class="num">20</span>
-          <div class="body">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5o2HiUMFMPNQc9NESVMQlj?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 20"></iframe>
+            <article class="entry entry--mix">
+              <span class="num">02</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7AxeYLx1w3O1vlw47faLjN?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 02"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">01</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1t5IGOigNzYJb10KKymOBm?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 01"></iframe>
+              </div>
+            </article>
+
           </div>
-        </article>
+        </details>
       </section>
     </div>
   </main>
