@@ -94,6 +94,10 @@ Variants:
 - Journal variant uses `<h2>` instead of `<h3>` (entries are the page's
   primary content, not nested under sections)
 
+Ordering is per-room, not global: /writing/ "My Stream of Consciousness" runs
+newest → oldest and is folded behind `.more-entries`; /sounds/ entries run in
+intended listen order; /recommendations/ groups by shelf. Match the room.
+
 ## The .shelf component (parent listing pages)
 Collapsible category using native `<details>` / `<summary>`. Zero JS.
 Structure:
@@ -105,6 +109,30 @@ Structure:
 Multiple shelves can be open at once. Add `name="shelf"` to all <details>
 elements on a page to make them mutually exclusive (browser feature, not JS).
 First used on /recommendations/.
+
+## The .more-entries component (fold / "read the rest" overflow)
+Keeps a long running list scannable: the newest 1–2 `<article class="entry">`
+stay visible, and every older entry is tucked behind a native
+`<details class="more-entries">` toggle. Zero JS.
+
+Distinct from `.shelf` (which collapses an entire *category* from empty) and
+from `.deep-dive` (which expands one entry's writeup): `.more-entries`
+collapses only the *overflow tail* of a single chronological list, leaving the
+freshest entries always visible.
+
+Structure:
+- The newest 1–2 entries sit directly in the `<section>`, always visible.
+- `<details class="more-entries">` wraps all older entries.
+- `<summary>` holds two spans that swap on `[open]` via CSS (no JS):
+  `<span class="when-closed">older musings ↓</span>`
+  `<span class="when-open">fewer ↑</span>`
+- Default disclosure marker is hidden (`::-webkit-details-marker { display:none }`
+  + `::marker { content: "" }`); summary is styled as a small left-aligned
+  bordered accent button reusing the page palette.
+- No hardcoded count in the label — so it never goes stale as entries are added.
+
+First used on /writing/ (My Stream of Consciousness), which holds ~20+ notes
+behind the fold.
 
 ## The .doorway component (cross-aesthetic links)
 A large bordered card used to link from one room to a tonally different
@@ -216,15 +244,30 @@ never touch the JS.
    "published" section. Update the link href, title, meta (date + word count),
    tags inside `.tags` div, excerpt, and "read on substack" href.
 2. Use 1–3 tags. Common tags: ai, tech, business, music, philosophy.
-3. Commit.
-
-### Add a note (from notes app)
-1. In `/writing/index.html`, copy an `<article class="entry">` from the
-   "notes" section.
-2. Use `.entry.with-divider` for fragment-length (1–3 paragraphs). Skip
-   the class for single-paragraph musings.
-3. Title is optional for short musings; required for fragment-length pieces.
+3. Newest post on top.
 4. Commit.
+
+### Add a note (from notes app / notebook)
+1. In `/writing/index.html`, the "My Stream of Consciousness" section runs
+   **newest → oldest** (newest on top) and is folded with `.more-entries`:
+   the newest 1–2 notes sit directly in the `<section>`, everything older
+   lives inside `<details class="more-entries">`.
+2. A new note goes at the TOP, as the first visible entry. If that pushes the
+   visible count past 2, move the oldest now-visible entry down to the top of
+   the `<details>` block.
+3. Copy an existing `<article class="entry">`. Update the optional `<h3>`
+   title, the `<p class="meta">` date (lowercase written form, e.g.
+   "june 14, 2023"; omit the meta line entirely if the note is undated), and
+   the body paragraphs.
+4. Divider rule: `.entry.with-divider` for multi-paragraph or long entries;
+   plain `.entry` for short single-paragraph musings. A titled note and its
+   untitled continuation travel together as a cluster — the parent stays plain
+   so it connects down, and the continuation carries the closing divider. The
+   last entry before the room-door stays plain.
+5. Undated musings collect at the bottom of the section.
+6. Keep the author's original capitalization (these are verbatim voice, not
+   forced lowercase like UI prose). Title is optional for short musings.
+7. Commit.
 
 ### Add a journal entry
 1. In `/writing/journal/index.html`, copy an `<article class="entry">` block.
@@ -260,6 +303,13 @@ never touch the JS.
 5. Keep meta in the .mono class. Excerpt stays in serif.
 6. Commit.
 
+### Fold a section that has grown too long
+When a running list (notes, etc.) gets long enough to bury the room-door,
+apply `.more-entries`: keep the newest 1–2 entries in the `<section>` and wrap
+the rest in `<details class="more-entries">` with the swapping `when-closed` /
+`when-open` summary spans. See "The .more-entries component". Don't put a
+hardcoded count in the toggle label.
+
 ### Update /now/ (monthly refresh)
 1. Open /now/index.html. Update the .stamp date (e.g., "updated jun 2026").
 2. Replace content in each section: making (entries), reading/listening (prose),
@@ -282,9 +332,12 @@ never touch the JS.
 
 ## Tone conventions
 - Lowercase prose, generally. Title Case where it feels off otherwise.
+- Personal writing (journal, stream-of-consciousness notes) keeps the author's
+  own capitalization and voice verbatim — the lowercase-prose default is for
+  UI / framing text, not the author's entries.
 - Italic small grey for meta and section intros.
 - Accent color used sparingly: links, hover states, section headers.
-- No emoji in body text. Symbols (`→`, `·`, `←`, `♪`, `▶`, `◼`) are fine.
+- No emoji in body text. Symbols (`→`, `·`, `←`, `♪`, `▶`, `◼`, `↓`, `↑`) are fine.
 
 ## Hard rules — do not violate
 - No frameworks (no React, no Vue, no Tailwind, no jQuery).
