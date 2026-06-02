@@ -62,6 +62,59 @@
       font-size: 1rem;
     }
 
+    /* ── notebook photo ─────────────────────────────────────────────────────
+       A photographed notebook page. Sits above the entry body.
+       Uses object-fit: cover so any aspect ratio works.
+       The slight rotation makes it feel physical, not scanned.
+       To add a photo: wrap an <img> in <div class="notebook-photo">.
+       To add multiple pages: use class="notebook-photo notebook-photo--spread".
+    ─────────────────────────────────────────────────────────────────────── */
+    .notebook-photo {
+      margin: 0 0 2rem;
+      transform: rotate(-0.4deg);
+      transform-origin: bottom left;
+    }
+
+    .notebook-photo img {
+      display: block;
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid var(--rule);
+      box-shadow:
+        2px 3px 8px rgba(31, 24, 18, 0.12),
+        0 1px 2px rgba(31, 24, 18, 0.08);
+      /* Very slight sepia to blend with the page palette */
+      filter: sepia(8%);
+    }
+
+    /* Two-photo spread: pages side by side, opposite tilts */
+    .notebook-photo--spread {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .notebook-photo--spread img:first-child {
+      transform: rotate(-0.6deg);
+    }
+
+    .notebook-photo--spread img:last-child {
+      transform: rotate(0.4deg);
+    }
+
+    /* Caption below a photo, if wanted */
+    .notebook-photo figcaption {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin-top: 0.5rem;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── entry ────────────────────────────────────────────────────────────── */
     .entry {
       margin-bottom: 4rem;
     }
@@ -123,6 +176,19 @@
       margin-bottom: 0;
     }
 
+    /* In-progress placeholder: sits where the body would be.
+       Honest about incompleteness without looking like a broken page. */
+    .entry .in-progress {
+      font-style: italic;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      border-left: 2px solid var(--rule);
+      padding-left: 1rem;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ── divider ─────────────────────────────────────────────────────────── */
     .divider {
       text-align: center;
       color: var(--rule);
@@ -137,6 +203,9 @@
       h1 { font-size: 1.8rem; }
       .entry { margin-bottom: 3rem; }
       .divider { margin: 3.5rem 0; }
+      .notebook-photo--spread {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -147,36 +216,41 @@
     <h1>journal</h1>
     <p class="intro">poetic writing from a physical notebook, typed up here. some entries have music — the song that was playing as they were written. play it, or don't.</p>
 
+    <!-- ── entry: shine on you crazy diamond ───────────────────────────────
+         To add the notebook photo: swap the src below with your actual image
+         path (e.g. /writing/journal/img/soycd-page.jpg).
+         If you have two pages: use the .notebook-photo--spread pattern —
+         add a second <img> inside the same <figure>.
+    ──────────────────────────────────────────────────────────────────────── -->
     <article class="entry">
-      <h2>the town at 3am</h2>
-      <p class="meta">may 14, 2026</p>
+      <h2>shine on you crazy diamond</h2>
+      <p class="meta">in progress</p>
+
+      <!-- Notebook photo: replace src with your actual photo path.
+           Remove this block entirely if no photo yet. -->
+      <figure class="notebook-photo">
+        <img
+          src="/writing/journal/img/soycd-notebook.jpg"
+          alt="handwritten notes on Shine On You Crazy Diamond"
+          loading="lazy"
+        >
+        <!-- Optional caption: uncomment if wanted
+        <figcaption>notebook, may 2026</figcaption>
+        -->
+      </figure>
+
       <p class="scored-to">
         <span class="label">written to:</span>
-        <a href="https://open.spotify.com/track/REPLACE_WITH_REAL_ID" target="_blank" rel="noopener">Pink Floyd — Echoes →</a>
+        <a href="https://open.spotify.com/track/4LwJJfn3lJGJlSECpxwDPt" target="_blank" rel="noopener">Pink Floyd — Shine On You Crazy Diamond (Pts. I–V) →</a>
       </p>
+
       <div class="body">
-        <p>placeholder for the body of a journal entry. this is the slowest room. the line-height is wider. words sit further apart. paragraphs breathe.</p>
-        <p>each entry can run as long as it needs to. the typography is built for being read slowly, ideally with the paired music playing.</p>
-        <p>the music isn't required. it's a recommendation. the writing should stand alone.</p>
+        <p class="in-progress">my interpretations here soon — still sitting with it.</p>
       </div>
     </article>
 
     <div class="divider">· · ·</div>
 
-    <article class="entry">
-      <h2>another entry</h2>
-      <p class="meta">may 8, 2026</p>
-      <p class="scored-to">
-        <span class="label">written to:</span>
-        <button class="play" data-src="/sounds/audio/sketch-01.mp3">▶ untitled sketch #1</button>
-      </p>
-      <div class="body">
-        <p>this entry uses one of your own tracks — self-hosted MP3 from /sounds/audio/. the play button uses the same single-track-at-a-time logic as the sounds page, but fades in softly so the music doesn't slam.</p>
-        <p>so per entry: either link out to spotify/youtube (for copyrighted music), or play a self-hosted file (for your own work or royalty-free pieces).</p>
-      </div>
-    </article>
-
-    <div class="divider">· · ·</div>
   </main>
 
   <script>
