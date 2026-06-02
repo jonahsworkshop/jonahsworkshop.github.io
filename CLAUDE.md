@@ -18,7 +18,7 @@ pattern introduced. Never let it drift.**
 ## File structure
 
     /index.html                       workshop entry (cream + serif)              BUILT
-    /sounds/index.html                brutalist-techno room                       BUILT
+    /sounds/index.html                brutalist-techno room, two tabs             BUILT
     /sounds/audio/                    self-hosted MP3s                            (folder)
     /writing/index.html               calm room (cream + serif)                   BUILT
     /writing/journal/index.html       poetic room with audio (dimmer cream)       BUILT
@@ -57,7 +57,9 @@ Used on: /sounds/
 --accent: #9eff5a;    --rule: #222;
 Font: `"Berkeley Mono", "JetBrains Mono", "IBM Plex Mono", "Fira Code", Menlo, Consolas, monospace`
 Atmosphere: dark, electric, after-midnight, post-rave
-Custom JS audio player (no native <audio> visible)
+Custom JS audio player (no native <audio> visible).
+Now uses a two-tab switcher (my music / listening). Spotify playlists are
+embedded via <iframe>, never the API.
 
 ### Dystopian-degraded
 Used on: /recommendations/dystopia/
@@ -114,6 +116,42 @@ target. Structure:
 - `<p>` — one-line teaser of what's in the room
 First used on /recommendations/ to link to /recommendations/dystopia/.
 
+## The .tabs component (in-page section switcher)
+A row of bracketed tab buttons that show/hide sibling `.panel` divs. Native
+buttons + ~12 lines of JS, no framework. Used to split one room into tonal
+sub-areas without a new page. First used on /sounds/ (my music | listening).
+
+Structure:
+- `<div class="tabs" role="tablist">` wraps the buttons
+- each `<button class="tab" role="tab" aria-selected="..." aria-controls="panel-x"
+  data-panel="x">` toggles a panel
+- each `<div class="panel" id="panel-x" role="tabpanel">` holds that tab's
+  content; inactive panels get the `hidden` attribute
+- JS: on click, set every tab `aria-selected="false"` + every panel `hidden`,
+  then activate the clicked tab and unhide its `#panel-{data-panel}`.
+- Styling reuses the bracketed-button language; active tab = filled accent.
+- Keep tab JS in its own IIFE, separate from the audio-player IIFE, so the
+  two can't break each other.
+
+## The .entry--mix component (embedded Spotify playlist)
+A variant of `.entry` whose `.body` holds a Spotify embed `<iframe>` instead
+of text + play button. Used for playlists we don't / can't self-host. The
+iframe renders the playlist name, cover art, description, and player itself,
+so no name/meta text is needed in the markup — just the numbered `.num`.
+
+Rules:
+- Embed URL form: `https://open.spotify.com/embed/playlist/{ID}?utm_source=generator`
+  Strip the `?si=...` share param from the original link; keep only the ID.
+- Compact height: `height="152"`. Always add `loading="lazy"` — with many
+  embeds on one page, lazy-loading is what keeps first paint fast (each
+  iframe otherwise phones Spotify on load).
+- Number entries in intended listen order (01, 02, …); the embed carries the
+  title/date, the `.num` carries the order.
+- This is the sanctioned way to feature copyrighted music (see hard rules):
+  embed, never self-host, never the Web API (the Client-Credentials flow is
+  403 on user playlists anyway).
+First used on /sounds/ ("Today / wormholes" section).
+
 ## The .entry--deep / .deep-dive component (expandable entries)
 A variant of `.entry` that contains a nested `<details class="deep-dive">`
 for a longer writeup and/or attached links (video essays, related reading).
@@ -161,9 +199,17 @@ never touch the JS.
 ### Add a sounds track
 1. Drop MP3 in `/sounds/audio/`.
 2. In `/sounds/index.html`, copy an `<article class="entry">` from the
-   "making" section. Update the `num`, h3 title, meta spans, note, and
-   `data-src` on the play button.
+   "making" section (my music tab). Update the `num`, h3 title, meta spans,
+   note, and `data-src` on the play button.
 3. Commit.
+
+### Add a "Today" wormhole playlist
+1. Copy the playlist's Spotify share link; keep only the ID (drop `?si=...`).
+2. In /sounds/index.html, inside the "Today / wormholes" section (listening
+   tab), copy an `<article class="entry entry--mix">` block.
+3. Bump the `.num` to the next order position and swap the playlist ID in the
+   iframe `src`. Update the iframe `title` to match.
+4. Commit.
 
 ### Add a substack post
 1. In `/writing/index.html`, copy an `<article class="entry">` from the
@@ -249,3 +295,4 @@ never touch the JS.
   palettes — they break the aesthetic. Use custom JS players.
 - No copyrighted music files self-hosted in the repo. Use external links
   for Spotify/YouTube/Apple Music; only self-host music you have rights to.
+  Spotify playlists use embed iframes (.entry--mix), never the Web API.
