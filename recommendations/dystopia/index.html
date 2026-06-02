@@ -117,54 +117,41 @@
   }
   .intro .lit { color: var(--accent); font-style: normal; }
 
-  /* .entry — dystopia variant */
-  .entry {
-    margin: 0 0 2.25rem;
-    padding-left: 0.75rem;
-    border-left: 1px solid var(--rule);
+  /* pending-transmission — coming soon block */
+  .pending-transmission {
+    margin: 2rem 0 3rem;
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    position: relative;
   }
-  .entry .rec-id {
+  .pending-transmission::before {
+    content: 'PENDING';
+    position: absolute;
+    top: -0.55rem;
+    left: 1rem;
+    background: var(--bg);
+    padding: 0 0.4rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
     color: var(--ink-soft);
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    margin: 0 0 0.2rem;
-    text-transform: uppercase;
+    font-family: "Berkeley Mono", "JetBrains Mono", "IBM Plex Mono", "Fira Code", Menlo, Consolas, monospace;
   }
-  .entry h3 {
-    font-size: 1.15rem;
-    font-weight: 500;
-    margin: 0 0 0.25rem;
-  }
-  .entry h3 a {
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-    transition: color 0.15s, text-shadow 0.15s, border-color 0.15s;
-  }
-  .entry h3 a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-    text-shadow: 0 0 10px rgba(255, 154, 60, 0.4);
-  }
-  .entry .meta {
-    font-size: 0.75rem;
+  .pending-transmission p {
+    margin: 0 0 0.6rem;
+    font-size: 0.9rem;
     color: var(--ink-soft);
-    margin: 0 0 0.5rem;
-    letter-spacing: 0.05em;
+    font-style: italic;
   }
-  .entry .excerpt {
-    margin: 0 0 0.5rem;
-    font-size: 0.95rem;
-    color: #b8a988;
+  .pending-transmission p:last-child { margin-bottom: 0; }
+  .pending-transmission .status-line {
+    font-style: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    opacity: 0.6;
+    font-family: "Berkeley Mono", "JetBrains Mono", "IBM Plex Mono", "Fira Code", Menlo, Consolas, monospace;
   }
-  .entry .ext {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: var(--accent);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-  }
-  .entry .ext:hover { text-shadow: 0 0 8px rgba(255, 154, 60, 0.5); }
+  .pending-transmission .status-line .warn { color: var(--warn); opacity: 1; }
 
   .endmark {
     margin-top: 3rem;
@@ -192,39 +179,11 @@
 
   <p class="intro">field reports from possible futures and a few present ones in disguise. <span class="lit">read in dim light.</span></p>
 
-  <article class="entry">
-    <p class="rec-id mono">rec.001 // book</p>
-    <h3><a href="#">title goes here</a></h3>
-    <p class="meta mono">author · 19xx · 250pp</p>
-    <p class="excerpt">a short, clipped sentence on why this still hurts.</p>
-    <a class="ext mono" href="#">retrieve →</a>
-  </article>
-
-  <article class="entry">
-    <p class="rec-id mono">rec.002 // film</p>
-    <h3><a href="#">title goes here</a></h3>
-    <p class="meta mono">director · 20xx · 109min</p>
-    <p class="excerpt">one image you won't shake.</p>
-    <a class="ext mono" href="#">retrieve →</a>
-  </article>
-
-  <article class="entry">
-    <p class="rec-id mono">rec.003 // series</p>
-    <h3><a href="#">title goes here</a></h3>
-    <p class="meta mono">showrunner · 20xx · s01</p>
-    <p class="excerpt">a workplace, but the work is the cage.</p>
-    <a class="ext mono" href="#">retrieve →</a>
-  </article>
-
-  <article class="entry">
-    <p class="rec-id mono">rec.004 // essay</p>
-    <h3><a href="#">title goes here</a></h3>
-    <p class="meta mono">author · publication · 20xx</p>
-    <p class="excerpt">the sentence that broke the spell.</p>
-    <a class="ext mono" href="#">retrieve →</a>
-  </article>
-
-  <!-- add more entries here. keep them clipped. -->
+  <div class="pending-transmission mono">
+    <p>transmissions incoming. the shelf is being stocked.</p>
+    <p>books, films, series, essays — things that see the world clearly and don't look away.</p>
+    <p class="status-line"><span class="warn">◼</span> status :: under construction &nbsp;/&nbsp; check back soon</p>
+  </div>
 
   <div class="endmark mono"><span class="accent">◼</span> end of transmission <span class="accent">◼</span></div>
 </main>
