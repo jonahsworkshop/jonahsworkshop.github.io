@@ -191,11 +191,12 @@
       color: var(--bg);
     }
 
-    /* --- mix (spotify playlist) + album entries --- */
+    /* --- mix (spotify playlist) + album + floor entries --- */
     .entry--mix .body { padding-top: 0; }
 
     .entry--mix iframe,
-    .entry--album iframe {
+    .entry--album iframe,
+    .entry--floor iframe {
       width: 100%;
       border: 1px solid var(--rule);
       border-radius: 12px;
@@ -210,6 +211,30 @@
       color: var(--accent);
       font-weight: 700;
       letter-spacing: 0.05em;
+    }
+
+    /* --- dance floor entries: story + optional photo/video + a set link --- */
+    .entry--floor iframe { margin-top: 0.5rem; }
+
+    .entry--floor img,
+    .entry--floor video {
+      width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      display: block;
+      margin: 0.5rem 0 1rem;
+    }
+
+    /* editable placeholder for a photo/video you haven't dropped in yet */
+    .floor-media {
+      border: 1px dashed var(--rule);
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      margin: 0.5rem 0 1rem;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     /* muted "coming soon" teaser */
@@ -279,6 +304,7 @@
     <div class="tabs" role="tablist" aria-label="sounds sections">
       <button class="tab" role="tab" id="tab-making" aria-controls="panel-making" aria-selected="true" data-panel="making">[ my music ]</button>
       <button class="tab" role="tab" id="tab-listening" aria-controls="panel-listening" aria-selected="false" data-panel="listening">[ listening ]</button>
+      <button class="tab" role="tab" id="tab-floors" aria-controls="panel-floors" aria-selected="false" data-panel="floors">[ dance floors ]</button>
     </div>
 
     <!-- ============ TAB 1 — MY MUSIC ============ -->
@@ -326,6 +352,37 @@
       <section>
         <h2>Listening</h2>
         <p>what's on rotation. not a canon, just what's open right now.</p>
+
+        <!-- standing anchor: the whole physical shelf, catalogued on discogs -->
+        <article class="entry">
+          <span class="num">→</span>
+          <div class="body">
+            <h3>my record collection</h3>
+            <p class="meta"><span>discogs</span><span>the whole shelf</span></p>
+            <p class="note">everything i've collected, rated and catalogued — the full physical shelf, not just what's on rotation.</p>
+            <a class="ext" href="https://www.discogs.com/users/ratings/Jonah30" target="_blank" rel="noopener">[ find my record collection here → ]</a>
+          </div>
+        </article>
+
+        <article class="entry">
+          <span class="num">→</span>
+          <div class="body">
+            <h3>dj seinfeld — if this is it</h3>
+            <p class="meta"><span>electronic</span><span>2026</span><span>added jun 2026</span></p>
+            <p class="note">clean futuristic dance music with brilliant vocals.</p>
+            <a class="ext" href="https://open.spotify.com/album/5xwMjkxLQWWnTaj9jbW2aq" target="_blank" rel="noopener">[ listen → ]</a>
+          </div>
+        </article>
+
+        <article class="entry">
+          <span class="num">→</span>
+          <div class="body">
+            <h3>digitalism — optimism</h3>
+            <p class="meta"><span>electronic</span><span>added jun 2026</span></p>
+            <p class="note">an amazing emotional dance album with meaningful messages around every corner and a daft punk style edge sound.</p>
+            <a class="ext" href="https://open.spotify.com/album/2XDnp6nVUaEXWrHbqwP54t" target="_blank" rel="noopener">[ listen → ]</a>
+          </div>
+        </article>
 
         <article class="entry">
           <span class="num">→</span>
@@ -508,6 +565,65 @@
 
           </div>
         </details>
+      </section>
+    </div>
+
+    <!-- ============ TAB 3 — DANCE FLOORS ============ -->
+    <div class="panel" id="panel-floors" role="tabpanel" aria-labelledby="tab-floors" hidden>
+      <section>
+        <h2>Dance Floors That Changed My Life</h2>
+        <p>the nights that rearranged something. newest on top.</p>
+
+        <!-- HOW TO ADD A FLOOR:
+             1. copy an <article>, bump the .num (newest = highest, on top).
+             2. h3 = artist / night, meta = date · place · context.
+             3. write the description in <p class="note"> — your voice, verbatim.
+             4. PHOTO/VIDEO: replace the <div class="floor-media"> box with one of:
+                  <img src="/sounds/img/your-photo.jpg" alt="..." loading="lazy">
+                  <video src="/sounds/img/your-clip.mp4" controls playsinline preload="none"></video>
+                  <iframe ... src="https://www.youtube.com/embed/VIDEO_ID" ...></iframe>   (youtube, strip ?si=)
+                (put your own files in /sounds/img/ ; create that folder on first upload.)
+             5. SET / SONG LINK: keep the <a class="ext"> and point it at the real url,
+                OR swap it for a spotify embed:
+                  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/TRACK_ID?utm_source=generator" width="100%" height="152" frameborder="0" loading="lazy" title="..."></iframe>
+             6. commit this file AND /CLAUDE.md together. -->
+
+        <!-- 03 — newest -->
+        <article class="entry entry--floor">
+          <span class="num">03</span>
+          <div class="body">
+            <h3>The Eagles — New Orleans Jazz Fest</h3>
+            <p class="meta"><span>may 2026</span><span>new orleans</span><span>jazz fest</span></p>
+            <p class="note">[ describe this night — write it your own way. ]</p>
+            <div class="floor-media">[ photo / video — replace this box ]</div>
+            <a class="ext" href="#" target="_blank" rel="noopener">[ set / song → ]</a>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="entry entry--floor">
+          <span class="num">02</span>
+          <div class="body">
+            <h3>CircoLoco — DC-10</h3>
+            <p class="meta"><span>june 2025</span><span>ibiza</span><span>circoloco · dc-10</span></p>
+            <p class="note">[ describe this night — write it your own way. ]</p>
+            <div class="floor-media">[ photo / video — replace this box ]</div>
+            <a class="ext" href="#" target="_blank" rel="noopener">[ set / song → ]</a>
+          </div>
+        </article>
+
+        <!-- 01 — oldest -->
+        <article class="entry entry--floor">
+          <span class="num">01</span>
+          <div class="body">
+            <h3>Bedouin — Zamna Festival</h3>
+            <p class="meta"><span>january 2025</span><span>tulum, mexico</span><span>zamna</span></p>
+            <p class="note">[ describe this night — write it your own way. ]</p>
+            <div class="floor-media">[ photo / video — replace this box ]</div>
+            <a class="ext" href="#" target="_blank" rel="noopener">[ set / song → ]</a>
+          </div>
+        </article>
+
       </section>
     </div>
   </main>
