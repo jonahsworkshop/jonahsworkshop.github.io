@@ -1,220 +1,657 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>about · Jonah's Workshop</title>
-<style>
-  :root {
-    --bg: #f1ece1;
-    --ink: #2a2520;
-    --ink-soft: #6b6258;
-    --accent: #8b3a2a;
-    --rule: #d8d0c0;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "Iowan Old Style", "Palatino", Georgia, serif;
-    font-size: 17px;
-    line-height: 1.65;
-  }
-  main {
-    max-width: 36rem;
-    margin: 0 auto 0 max(2rem, 12vw);
-    padding: 3rem 1.5rem 6rem 0;
-  }
-  @media (max-width: 600px) {
-    main { margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOUNDS — jonah's workshop</title>
+  <meta name="description" content="music i'm making and music i'm playing.">
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --ink: #e8e8e8;
+      --ink-soft: #777;
+      --accent: #9eff5a;
+      --rule: #222;
+    }
 
-  .back {
-    display: inline-block;
-    margin-bottom: 2.5rem;
-    color: var(--ink-soft);
-    text-decoration: none;
-    font-style: italic;
-    font-size: 0.95rem;
-  }
-  .back:hover { color: var(--accent); }
+    * { box-sizing: border-box; }
 
-  h1 {
-    font-size: 2.25rem;
-    font-weight: 500;
-    margin: 0 0 0.25rem;
-    letter-spacing: -0.01em;
-  }
-  .intro {
-    font-style: italic;
-    color: var(--ink-soft);
-    margin: 0 0 3rem;
-    font-size: 0.95rem;
-  }
+    ::selection {
+      background: var(--accent);
+      color: var(--bg);
+    }
 
-  section { margin: 0 0 2.75rem; }
-  section > h2 {
-    font-size: 0.8rem;
-    font-weight: 500;
-    font-variant: small-caps;
-    letter-spacing: 0.14em;
-    color: var(--ink-soft);
-    margin: 0 0 1rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid var(--rule);
-  }
-  section p { margin: 0 0 1rem; }
-  section p:last-child { margin-bottom: 0; }
-  section a {
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-  }
-  section a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Berkeley Mono", "JetBrains Mono", "IBM Plex Mono", "Fira Code", Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      padding: 2.5rem 2rem 6rem;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* spec list for tech stack */
-  dl.spec {
-    margin: 0;
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 0.5rem 1.25rem;
-    font-size: 0.95rem;
-  }
-  dl.spec dt {
-    font-style: italic;
-    color: var(--ink-soft);
-  }
-  dl.spec dd { margin: 0; }
-  @media (max-width: 600px) {
-    dl.spec { gap: 0.4rem 0.9rem; }
-  }
+    main {
+      max-width: 44rem;
+      margin: 0 auto 0 max(2rem, 8vw);
+    }
 
-  /* rooms list with palette swatches */
-  .rooms {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .rooms li {
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
-    padding: 0.55rem 0;
-    border-bottom: 1px dotted var(--rule);
-    font-size: 0.95rem;
-    flex-wrap: wrap;
-  }
-  .rooms li:last-child { border-bottom: none; }
-  .rooms .swatch {
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    flex-shrink: 0;
-    transform: translateY(1px);
-  }
-  .rooms .name {
-    flex-shrink: 0;
-    font-style: italic;
-    color: var(--ink-soft);
-    min-width: 9rem;
-  }
-  .rooms .where { color: var(--ink); }
+    .back {
+      display: inline-block;
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
 
-  .signoff {
-    margin-top: 3.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--rule);
-    color: var(--ink-soft);
-    font-size: 0.85rem;
-    font-style: italic;
-  }
-</style>
+    .back:hover { color: var(--accent); }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin: 0 0 0.5rem;
+    }
+
+    .intro {
+      color: var(--ink-soft);
+      margin: 0 0 2.5rem;
+      max-width: 32rem;
+      font-size: 0.95rem;
+    }
+
+    /* --- tabs --- */
+    .tabs {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin: 0 0 1rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1rem;
+    }
+
+    .tab {
+      font: inherit;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: none;
+      border: 1px solid var(--rule);
+      padding: 0.4rem 0.9rem;
+      cursor: pointer;
+    }
+
+    .tab:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--bg);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .panel[hidden] { display: none; }
+
+    h2 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 4rem 0 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* first section header inside a panel sits closer to the tabs */
+    .panel > section:first-child > h2 { margin-top: 2rem; }
+
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    section > p:first-of-type {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      margin: 0 0 2rem;
+      max-width: 32rem;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0 1rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .entry .num {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      padding-top: 0.15rem;
+    }
+
+    .entry .body { min-width: 0; }
+
+    .entry h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.25rem;
+      text-transform: uppercase;
+    }
+
+    .entry .meta {
+      color: var(--ink-soft);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0 0 0.7rem;
+    }
+
+    .entry .meta span + span::before {
+      content: " · ";
+      margin: 0 0.2rem;
+    }
+
+    .entry .note {
+      margin: 0 0 0.9rem;
+      max-width: 32rem;
+      font-size: 0.9rem;
+    }
+
+    .play, .ext {
+      display: inline-block;
+      color: var(--accent);
+      background: none;
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.7rem;
+      font: inherit;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .play:hover, .ext:hover,
+    .play.playing {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* --- mix (spotify playlist) + album + floor entries --- */
+    .entry--mix .body { padding-top: 0; }
+
+    .entry--mix iframe,
+    .entry--album iframe,
+    .entry--floor iframe {
+      width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      display: block;
+      color-scheme: normal;
+    }
+
+    /* the released album is the headline of the Making tab */
+    .entry--album iframe { margin: 0 0 1rem; }
+
+    .entry--album .num {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* --- dance floor entries: story + optional photo/video + a set link --- */
+    .entry--floor iframe { margin-top: 0.5rem; }
+
+    .entry--floor img,
+    .entry--floor video {
+      width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      display: block;
+      margin: 0.5rem 0 1rem;
+    }
+
+    /* editable placeholder for a photo/video you haven't dropped in yet */
+    .floor-media {
+      border: 1px dashed var(--rule);
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      margin: 0.5rem 0 1rem;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* muted "coming soon" teaser */
+    .entry--soon .num,
+    .entry--soon h3,
+    .entry--soon .note { color: var(--ink-soft); }
+    .entry--soon h3 { font-weight: 400; }
+
+    /* --- collapsible blocks: album story + today section --- */
+    /* strip the native disclosure triangle so summaries match the button look */
+    details summary {
+      list-style: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+    details summary::-webkit-details-marker { display: none; }
+
+    /* summaries styled like the [ play ] / [ listen ] buttons for consistency */
+    .story > summary,
+    .today-toggle {
+      color: var(--accent);
+      background: none;
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .story > summary:hover,
+    .today-toggle:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* open/closed indicator driven purely by the [open] attribute */
+    .story > summary::after,
+    .today-toggle::after { content: " ▸"; }
+    .story[open] > summary::after,
+    .today-collapse[open] .today-toggle::after { content: " ▾"; }
+
+    .story { margin: 0 0 1rem; }
+    .story[open] > summary { margin-bottom: 1rem; }
+    .story .story-body p {
+      font-size: 0.9rem;
+      max-width: 32rem;
+      margin: 0 0 1rem;
+    }
+
+    .today-collapse[open] .today-toggle { margin-bottom: 1.5rem; }
+
+    @media (max-width: 600px) {
+      body { padding: 2rem 1.25rem 4rem; font-size: 14px; }
+      main { margin-left: 0; }
+      h1 { font-size: 2rem; }
+      .entry { grid-template-columns: 2rem 1fr; }
+    }
+  </style>
 </head>
 <body>
-<main>
-  <a class="back" href="/">← back to the workshop</a>
+  <main>
+    <a class="back" href="/">← WORKSHOP/</a>
 
-  <h1>about</h1>
-  <p class="intro">About this website and the different rooms.</p>
+    <h1>Sounds</h1>
+    <p class="intro">music i'm making and music i'm playing. mostly slow, mostly looped, mostly after midnight.</p>
 
-  <section>
-    <h2>the site</h2>
-    <p>Jonah's workshop is a personal site built as a small house of rooms. Each section has its own atmosphere — a writing room, a sounds room, a recommendations bookshelf, a dystopia subroom — connected by a quiet hallway. </p>
-    <p>In a modern time where it feels like a race to consume as much content as possible, multi-task 5 tasks at once, and . I invite you to slow down and meaningfully appreciate some of my works that might not be perfect but required real thought and effort. In the recomendation section - consider it a filter -  I share with you the content I really feel worthy of my time (if you value that as a judge to be worth your time).</p>
-    <p>The site has no analytics, no cookies, no popups, no newsletter capture. You can simply leave by closing the tab.</p>
-  </section>
+    <div class="tabs" role="tablist" aria-label="sounds sections">
+      <button class="tab" role="tab" id="tab-making" aria-controls="panel-making" aria-selected="true" data-panel="making">[ my music ]</button>
+      <button class="tab" role="tab" id="tab-listening" aria-controls="panel-listening" aria-selected="false" data-panel="listening">[ listening ]</button>
+      <button class="tab" role="tab" id="tab-floors" aria-controls="panel-floors" aria-selected="false" data-panel="floors">[ dance floors ]</button>
+    </div>
 
+    <!-- ============ TAB 1 — MY MUSIC ============ -->
+    <div class="panel" id="panel-making" role="tabpanel" aria-labelledby="tab-making">
+      <section>
+        <h2>Making</h2>
+        <p>tracks, sketches, things in progress.</p>
 
-  <section>
-    <h2>influences</h2>
-    <p>Just stumbled upon the <a href="https://indieweb.org/" rel="noopener">indieweb</a> community, and I enjoyed its slow aproach to the ever-faster internet. I thought it could be a cool way to share what im working on and motivate me to make more cool things. And shoutout <a href="https://nownownow.com" rel="noopener">derek sivers' now movement for reminding us to focus on the present.</a>.</p>
-  </section>
+        <!-- released album — the headline of this tab -->
+        <article class="entry entry--album">
+          <span class="num">LP</span>
+          <div class="body">
+            <h3>I Like To Tell Stories</h3>
+            <p class="meta"><span>birds of one</span><span>album</span><span>2026</span></p>
+            <p class="note">my debut record — a night on the dance floor and a story about getting lost in it, then finding your way back to a quieter kind of joy.</p>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/3xv5EOtQBTTjNSgz0KP8N2?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="I Like To Tell Stories — Birds Of One"></iframe>
+            <details class="story">
+              <summary>[ the story ]</summary>
+              <div class="story-body">
+                <p>I like To Tell Stories starts with my teenage self discovering adult vices. The first tracks capture the pleasure, indulgence, and thrill of these new experiences. Eventually, as with many of us I got lost in them and we get to Intrusive Thoughts which is by far the most experimental piece on the album. It acts as an anti-climax of the album and it's a turning point where I shift from indulgence to reflection. The next track Give It Life is an effort to get back to a normal life but its quieter and boring, in comparison to the party lifestyle. However, the feelings always come back and the final 3 tracks see me appreciating life with a new light of joy and maturity.</p>
+                <p>But I like To Tell Stories is also a night on the dance floor at a festival or a club going from one room to the next to: moving as one with 500 others on a packed dance floor, to laughing with an older guy at the bar, to peacefully watching the trees sway in the wind, to dancing on your own in the night sky.</p>
+                <p>And I like To Tell Stories is also the one memory you had from long ago that made you feel like you've never felt before, or the relationship with that person you won't ever forget, that day you ended up exhausted and full of life, that dream you know one day will happen, that night you thought would never end, I like To Tell Stories is anything and everything you want it to be.</p>
+                <p>And that's the most beautiful thing about music. Everyone can listen to the same thing and relate to it from different experiences and memories yet we all share those feelings. Music tells us that even though we are different we are not that different. Music comforts us, it brings us together, it lets us know that we are not alone, that other people feel these things too and have been through what we have been.</p>
+                <p>Music reminds us we are all Birds Of One.</p>
+              </div>
+            </details>
+            <a class="ext" href="https://linktr.ee/BirdsOfOne" target="_blank" rel="noopener">[ all platforms → ]</a>
+          </div>
+        </article>
 
-  <section>
-    <h2>the maker</h2>
-    <p>jonah. bronx, nyc and new orleans. slowly walking through the world, apreciating its intricacies, and expressing feelings. this site is the workshop where some of those creations are displayed. it is a snapshot into my mind.</p>
-  </section>
+        <!-- teaser placeholder -->
+        <article class="entry entry--soon">
+          <span class="num">~</span>
+          <div class="body">
+            <h3>new experiments coming soon</h3>
+            <p class="meta"><span>in the workshop</span></p>
+            <p class="note">more loops, more rooms. check back.</p>
+          </div>
+        </article>
+      </section>
+    </div>
 
-<section>
-    <h2>find me</h2>
-    <p>
-      <a href="mailto:jssoccerkid@gmail">email</a> ·
-      <a href="https://github.com/jonah-30" rel="noopener">github</a> ·
-      <a href="https://substack.com/@jonahs30">substack</a> ·
-      <a href="https://open.spotify.com/artist/4IQn6VEjwKnGpYuVdYAvAj?si=kh5pqrEqQbGF5v94-2IF2A">spotify</a> ·
-      <a href="https://music.apple.com/us/artist/birds-of-one/1881652364">apple music</a> ·
-      <a href="https://on.soundcloud.com/d8jhNNuVCI7cVn72dg">soundcloud</a> ·
-      <a href="https://music.amazon.com/artists/B0GQWJ9WTR/birds-of-one?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_USN8k0avjUL2u4nVE07qr4V2G">amazon music</a> ·
-      <a href="https://www.discogs.com/users/ratings/Jonah30">discogs</a> ·
-      <a href="https://boxd.it/f1ZCt">letterboxd</a>
-    </p>
-  </section>
+    <!-- ============ TAB 2 — LISTENING ============ -->
+    <div class="panel" id="panel-listening" role="tabpanel" aria-labelledby="tab-listening" hidden>
+      <section>
+        <h2>Listening</h2>
+        <p>what's on rotation. not a canon, just what's open right now.</p>
 
- <section>
-    <h2>the rooms</h2>
-    <ul class="rooms">
-      <li>
-        <span class="swatch" style="background: #f1ece1; border: 1px solid #d8d0c0;"></span>
-        <span class="name">cream-serif</span>
-        <span class="where">home, writing, recommendations, now, about</span>
-      </li>
-      <li>
-        <span class="swatch" style="background: #ebe2c7; border: 1px solid #c9bba0;"></span>
-        <span class="name">cream, dimmer</span>
-        <span class="where">writing/journal</span>
-      </li>
-      <li>
-        <span class="swatch" style="background: #0c0c0c;"></span>
-        <span class="name">brutalist-techno</span>
-        <span class="where">sounds, music, dancing</span>
-      </li>
-      <li>
-        <span class="swatch" style="background: #1a1612;"></span>
-        <span class="name">dystopian-degraded</span>
-        <span class="where">recommendations/dystopia</span>
-      </li>
-    </ul>
-  </section>
-  
-  <section>
-    <h2>the stack (how the website itself was made)</h2>
-    <dl class="spec">
-      <dt>markup</dt>     <dd>plain html, one file per page</dd>
-      <dt>styles</dt>     <dd>css embedded in each page, no shared stylesheet</dd>
-      <dt>scripts</dt>    <dd>vanilla js, only where needed</dd>
-      <dt>fonts</dt>      <dd>system stacks only — no webfont requests</dd>
-      <dt>build</dt>      <dd>none. every page works as a static html file</dd>
-      <dt>hosting</dt>    <dd>github pages, auto-deploys on push</dd>
-      <dt>editor</dt>     <dd>github.dev in the browser</dd>
-    </dl>
-  </section>
-  
+        <article class="entry">
+          <span class="num">→</span>
+          <div class="body">
+            <h3>WhoMadeWho — Every Minute Alone (Dead Remixes)</h3>
+            <p class="meta"><span>electronic</span><span>added jun 2026</span></p>
+            <p class="note">remix record that lives somewhere between the dancefloor and the journey home.</p>
+            <a class="ext" href="https://open.spotify.com/album/0sjb58x1bYhJrQhoizYt50" target="_blank" rel="noopener">[ listen → ]</a>
+          </div>
+        </article>
 
-  <p class="signoff"> Everything here is human made and is allowed to be imperfect.</p>
-</main>
+        <article class="entry">
+          <span class="num">→</span>
+          <div class="body">
+            <h3>Dire Straits — Brothers in Arms</h3>
+            <p class="meta"><span>rock</span><span>1985</span><span>added jun 2026</span></p>
+            <p class="note">The guitar does things that shouldn't be possible. The second half of the record gets very quiet and just sits there earning every minute of it.</p>
+            <a class="ext" href="https://open.spotify.com/album/15J400U0rEpgE64UQgtvLs" target="_blank" rel="noopener">[ listen → ]</a>
+          </div>
+        </article>
+
+        <article class="entry">
+          <span class="num">→</span>
+          <div class="body">
+            <h3>marvin gaye — what's going on</h3>
+            <p class="meta"><span>soul</span><span>1971</span><span>added may 2026</span></p>
+            <p class="note">This album never stops feeling current, alive, and warm. The way each track bleeds into the next is just something else, you can't really play just one. And the slow groove on these songs is something a lot of modern dance music can't even dream of.</p>
+            <a class="ext" href="https://open.spotify.com/album/2v6ANhWhZBUKkg6pJJBs3B" target="_blank" rel="noopener">[ listen → ]</a>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <h2>Today / wormholes</h2>
+        <p>Days I fell into a music hole and kept digging. each one is its own day — meant to be played in order.</p>
+
+        <details class="today-collapse">
+          <summary class="today-toggle">[ 20 evenings ]</summary>
+          <div class="today-list">
+
+            <article class="entry entry--mix">
+              <span class="num">20</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5o2HiUMFMPNQc9NESVMQlj?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 20"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">19</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7pzjtIMuLTyx0BdvnwsMsP?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 19"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">18</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/33M7LntnxtM9dRJmA1l77i?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 18"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">17</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3xkr9T9SLh321F1IegK78G?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 17"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">16</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2PrGTlhwSZSeTKtuS0Xwfi?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 16"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">15</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/08kQzv6AgUzCvhUBig8ZQF?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 15"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">14</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5fpxpLJANAPScVblsEqbtF?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 14"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">13</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5eOE8S3iFRRWeS5gRaR49o?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 13"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">12</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0mpEIE5ib3E0CWOcKK1vUg?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 12"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">11</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6SgIYsQEQC5Zr2lKlbHN2I?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 11"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">10</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6H6rgxaicYGzWjj2rLvJ9K?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 10"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">09</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2KgtNXJHLVwpGunuScjEzq?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 09"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">08</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4e59jjgXHHmiccwZRAhV1f?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 08"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">07</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7DnI2gQnsgFYtlE1IOvnpS?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 07"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">06</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7dexVDrI0va3106Ll3KwkY?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 06"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">05</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4PMUd0GRd1wjUvCoRM14CB?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 05"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">04</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6Ft9Vd6ug9CtNInKLQiQzP?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 04"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">03</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7cW1lne8EE45beCI2oEBwR?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 03"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">02</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7AxeYLx1w3O1vlw47faLjN?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 02"></iframe>
+              </div>
+            </article>
+
+            <article class="entry entry--mix">
+              <span class="num">01</span>
+              <div class="body">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1t5IGOigNzYJb10KKymOBm?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="today — mix 01"></iframe>
+              </div>
+            </article>
+
+          </div>
+        </details>
+      </section>
+    </div>
+
+    <!-- ============ TAB 3 — DANCE FLOORS ============ -->
+    <div class="panel" id="panel-floors" role="tabpanel" aria-labelledby="tab-floors" hidden>
+      <section>
+        <h2>Dance Floors That Changed My Life</h2>
+        <p>the nights that rearranged something. newest on top.</p>
+
+        <!-- HOW TO ADD A FLOOR:
+             1. copy an <article>, bump the .num (newest = highest, on top).
+             2. h3 = artist / night, meta = date · place · context.
+             3. write the description in <p class="note"> — your voice, verbatim.
+             4. PHOTO/VIDEO: replace the <div class="floor-media"> box with one of:
+                  <img src="/sounds/img/your-photo.jpg" alt="..." loading="lazy">
+                  <video src="/sounds/img/your-clip.mp4" controls playsinline preload="none"></video>
+                  <iframe ... src="https://www.youtube.com/embed/VIDEO_ID" ...></iframe>   (youtube, strip ?si=)
+                (put your own files in /sounds/img/ ; create that folder on first upload.)
+             5. SET / SONG LINK: keep the <a class="ext"> and point it at the real url,
+                OR swap it for a spotify embed:
+                  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/TRACK_ID?utm_source=generator" width="100%" height="152" frameborder="0" loading="lazy" title="..."></iframe>
+             6. commit this file AND /CLAUDE.md together. -->
+
+        <!-- 03 — newest -->
+        <article class="entry entry--floor">
+          <span class="num">03</span>
+          <div class="body">
+            <h3>The Eagles — New Orleans Jazz Fest</h3>
+            <p class="meta"><span>may 2026</span><span>new orleans</span><span>jazz fest</span></p>
+            <p class="note">[ describe this night — write it your own way. ]</p>
+            <div class="floor-media">[ photo / video — replace this box ]</div>
+            <a class="ext" href="#" target="_blank" rel="noopener">[ set / song → ]</a>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="entry entry--floor">
+          <span class="num">02</span>
+          <div class="body">
+            <h3>CircoLoco — DC-10</h3>
+            <p class="meta"><span>june 2025</span><span>ibiza</span><span>circoloco · dc-10</span></p>
+            <p class="note">[ describe this night — write it your own way. ]</p>
+            <div class="floor-media">[ photo / video — replace this box ]</div>
+            <a class="ext" href="#" target="_blank" rel="noopener">[ set / song → ]</a>
+          </div>
+        </article>
+
+        <!-- 01 — oldest -->
+        <article class="entry entry--floor">
+          <span class="num">01</span>
+          <div class="body">
+            <h3>Bedouin — Zamna Festival</h3>
+            <p class="meta"><span>january 2025</span><span>tulum, mexico</span><span>zamna</span></p>
+            <p class="note">[ describe this night — write it your own way. ]</p>
+            <div class="floor-media">[ photo / video — replace this box ]</div>
+            <a class="ext" href="#" target="_blank" rel="noopener">[ set / song → ]</a>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // --- tab switcher (single responsibility: show/hide panels) ---
+    (function () {
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('.panel');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+          panels.forEach(p => { p.hidden = true; });
+
+          tab.setAttribute('aria-selected', 'true');
+          document.getElementById('panel-' + tab.dataset.panel).hidden = false;
+        });
+      });
+    })();
+
+    // --- self-hosted audio player (unchanged; single-track-at-a-time) ---
+    (function () {
+      let current = null;
+
+      document.querySelectorAll('.play').forEach(btn => {
+        const audio = new Audio();
+        audio.preload = 'none';
+        audio.src = btn.dataset.src;
+
+        btn.addEventListener('click', () => {
+          if (current && current.audio !== audio) {
+            current.audio.pause();
+            current.audio.currentTime = 0;
+            current.btn.textContent = '[ play ]';
+            current.btn.classList.remove('playing');
+          }
+
+          if (audio.paused) {
+            audio.play();
+            btn.textContent = '[ stop ]';
+            btn.classList.add('playing');
+            current = { audio, btn };
+          } else {
+            audio.pause();
+            audio.currentTime = 0;
+            btn.textContent = '[ play ]';
+            btn.classList.remove('playing');
+            current = null;
+          }
+        });
+
+        audio.addEventListener('ended', () => {
+          btn.textContent = '[ play ]';
+          btn.classList.remove('playing');
+          if (current && current.audio === audio) current = null;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
