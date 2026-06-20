@@ -129,6 +129,38 @@
     border-radius: 12px;
     width: 100%;
   }
+
+  /* past now playlists — archived "now" playlists tucked behind a fold.
+     Reuses the .more-entries disclosure language (native <details>, zero JS,
+     swapping when-closed/when-open summary spans) in the cream palette. */
+  .past-playlists { margin-top: 1.5rem; }
+  .past-playlists > summary {
+    display: inline-block;
+    list-style: none;
+    cursor: pointer;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--accent);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 0.3rem 0.7rem;
+    user-select: none;
+  }
+  .past-playlists > summary::-webkit-details-marker { display: none; }
+  .past-playlists > summary::marker { content: ""; }
+  .past-playlists > summary:hover { border-color: var(--accent); }
+  .past-playlists .when-open { display: none; }
+  .past-playlists[open] .when-closed { display: none; }
+  .past-playlists[open] .when-open { display: inline; }
+  .past-playlists-body { margin-top: 1.25rem; }
+  .past-entry { margin: 0 0 1.5rem; }
+  .past-entry:last-child { margin-bottom: 0; }
+  .past-label {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    margin: 0 0 0.6rem;
+  }
 </style>
 </head>
 <body>
@@ -137,6 +169,7 @@
 
   <h1>now</h1>
   <p class="intro">What i'm building, reading, thinking about.</p>
+  <p class="stamp">updated <span class="when">jun 2026</span></p>
 
   <section>
     <h2>making</h2>
@@ -161,19 +194,39 @@
     <h2>listening</h2>
     <p>Overmono, Tripolism, Dire Straights  Sometimes I go back to <em>The Weeknd's Trilogy or Kiss Land</em>.</p>
 
-  <div class="playlist">
+    <div class="playlist">
       <p class="playlist-label">on repeat — a small collection of recent finds:</p>
       <iframe
         class="playlist-embed"
-        src="https://open.spotify.com/embed/playlist/6SUIZglLX252emKNVNxfcI?si=7b1b19b3eb1c46b1?utm_source=generator"
+        src="https://open.spotify.com/embed/playlist/5EjSVks6uIgCEodMgbyeSd?utm_source=generator"
         width="100%"
         height="352"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
         title="now — a spotify playlist"
       ></iframe>
+
+      <details class="past-playlists">
+        <summary>
+          <span class="when-closed">past now playlists ↓</span>
+          <span class="when-open">fewer ↑</span>
+        </summary>
+        <div class="past-playlists-body">
+          <article class="past-entry">
+            <p class="past-label">april and may 2026</p>
+            <iframe
+              class="playlist-embed"
+              src="https://open.spotify.com/embed/playlist/6SUIZglLX252emKNVNxfcI?utm_source=generator"
+              width="100%"
+              height="152"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              title="april and may 2026 — a spotify playlist"
+            ></iframe>
+          </article>
+        </div>
+      </details>
     </div>
-    
   </section>
 
   <section>
